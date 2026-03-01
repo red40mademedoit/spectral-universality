@@ -1,0 +1,1026 @@
+{
+  "corpus": "arXiv 747 abstracts (same as Paper 2)",
+  "corpus_path": "/home/shdwdev/papers/spectral-taxonomy/arxiv_corpus.json",
+  "nomic_reference": {
+    "C00": {
+      "cat": "hep-th (pure)",
+      "r": 0.627,
+      "regime": "GUE"
+    },
+    "C01": {
+      "cat": "cs.LG",
+      "r": 0.52,
+      "regime": "GOE"
+    },
+    "C02": {
+      "cat": "quant-ph",
+      "r": 0.473,
+      "regime": "Poisson"
+    },
+    "C03": {
+      "cat": "cond-mat.stat-mech",
+      "r": 0.548,
+      "regime": "GOE"
+    },
+    "C04": {
+      "cat": "physics.bio-ph",
+      "r": 0.515,
+      "regime": "GOE"
+    },
+    "C05": {
+      "cat": "nlin.CD",
+      "r": 0.51,
+      "regime": "GOE"
+    },
+    "C06": {
+      "cat": "math-ph",
+      "r": 0.468,
+      "regime": "Poisson"
+    },
+    "C07": {
+      "cat": "math.SP",
+      "r": 0.57,
+      "regime": "GUE"
+    },
+    "C08": {
+      "cat": "math.NT/stat.ML",
+      "r": 0.487,
+      "regime": "Poisson"
+    },
+    "C09": {
+      "cat": "hep-th/math-ph (mixed)",
+      "r": 0.5,
+      "regime": "GOE"
+    }
+  },
+  "results": {
+    "TF-IDF raw": {
+      "label": "TF-IDF (raw, D=vocab)",
+      "N": 747,
+      "D": 4678,
+      "gamma": 0.15968362548097478,
+      "mp_edge": 1.9588922978087338,
+      "n_signal": 51,
+      "r_global": 0.5158615669836355,
+      "K": 10,
+      "clusters": [
+        {
+          "cluster": 0,
+          "n": 96,
+          "r": 0.5349708427833938,
+          "coherence": 0.022912419092922513,
+          "top_cat": "math.NT",
+          "top_cat_count": 77,
+          "regime": "GOE",
+          "category_dist": {
+            "hep-th": 1,
+            "quant-ph": 1,
+            "math-ph": 7,
+            "nlin.CD": 1,
+            "math.NT": 77,
+            "math.SP": 9
+          }
+        },
+        {
+          "cluster": 1,
+          "n": 95,
+          "r": 0.5419614438720101,
+          "coherence": 0.010977885782270937,
+          "top_cat": "physics.bio-ph",
+          "top_cat_count": 48,
+          "regime": "GOE",
+          "category_dist": {
+            "hep-th": 5,
+            "cond-mat.stat-mech": 10,
+            "quant-ph": 20,
+            "math-ph": 3,
+            "nlin.CD": 7,
+            "physics.bio-ph": 48,
+            "cs.LG": 1,
+            "stat.ML": 1
+          }
+        },
+        {
+          "cluster": 2,
+          "n": 109,
+          "r": 0.5082889301247933,
+          "coherence": 0.029171370748533966,
+          "top_cat": "cs.LG",
+          "top_cat_count": 77,
+          "regime": "GOE",
+          "category_dist": {
+            "hep-th": 1,
+            "quant-ph": 1,
+            "nlin.CD": 1,
+            "physics.bio-ph": 2,
+            "cs.LG": 77,
+            "stat.ML": 26,
+            "math.SP": 1
+          }
+        },
+        {
+          "cluster": 3,
+          "n": 83,
+          "r": 0.497772253820847,
+          "coherence": 0.014323486137666408,
+          "top_cat": "nlin.CD",
+          "top_cat_count": 53,
+          "regime": "~Poisson",
+          "category_dist": {
+            "cond-mat.stat-mech": 8,
+            "quant-ph": 2,
+            "math-ph": 13,
+            "nlin.CD": 53,
+            "physics.bio-ph": 4,
+            "cs.LG": 1,
+            "stat.ML": 1,
+            "math.SP": 1
+          }
+        },
+        {
+          "cluster": 4,
+          "n": 70,
+          "r": 0.42878202845947144,
+          "coherence": 0.023736960069828755,
+          "top_cat": "quant-ph",
+          "top_cat_count": 51,
+          "regime": "Poisson",
+          "category_dist": {
+            "hep-th": 6,
+            "cond-mat.stat-mech": 7,
+            "quant-ph": 51,
+            "math-ph": 4,
+            "nlin.CD": 1,
+            "physics.bio-ph": 1
+          }
+        },
+        {
+          "cluster": 5,
+          "n": 70,
+          "r": 0.511496039341786,
+          "coherence": 0.02312470545240181,
+          "top_cat": "math.SP",
+          "top_cat_count": 38,
+          "regime": "GOE",
+          "category_dist": {
+            "cond-mat.stat-mech": 3,
+            "quant-ph": 3,
+            "math-ph": 24,
+            "nlin.CD": 1,
+            "math.NT": 1,
+            "math.SP": 38
+          }
+        },
+        {
+          "cluster": 6,
+          "n": 78,
+          "r": 0.5396495606330858,
+          "coherence": 0.01684160004117323,
+          "top_cat": "hep-th",
+          "top_cat_count": 54,
+          "regime": "GOE",
+          "category_dist": {
+            "hep-th": 54,
+            "cond-mat.stat-mech": 2,
+            "quant-ph": 3,
+            "math-ph": 14,
+            "physics.bio-ph": 2,
+            "math.NT": 1,
+            "math.SP": 2
+          }
+        },
+        {
+          "cluster": 7,
+          "n": 77,
+          "r": 0.4576895176916081,
+          "coherence": 0.012915593665568735,
+          "top_cat": "cond-mat.stat-mech",
+          "top_cat_count": 40,
+          "regime": "~Poisson",
+          "category_dist": {
+            "hep-th": 5,
+            "cond-mat.stat-mech": 40,
+            "math-ph": 5,
+            "nlin.CD": 10,
+            "physics.bio-ph": 17
+          }
+        },
+        {
+          "cluster": 8,
+          "n": 46,
+          "r": 0.46913398252515326,
+          "coherence": 0.027841701011565825,
+          "top_cat": "cond-mat.stat-mech",
+          "top_cat_count": 24,
+          "regime": "~Poisson",
+          "category_dist": {
+            "hep-th": 9,
+            "cond-mat.stat-mech": 24,
+            "quant-ph": 5,
+            "math-ph": 3,
+            "nlin.CD": 2,
+            "physics.bio-ph": 1,
+            "math.NT": 1,
+            "math.SP": 1
+          }
+        },
+        {
+          "cluster": 9,
+          "n": 23,
+          "r": 0.6193558311963363,
+          "coherence": 0.09651044257157543,
+          "top_cat": "hep-th",
+          "top_cat_count": 19,
+          "regime": "GUE",
+          "category_dist": {
+            "hep-th": 19,
+            "cond-mat.stat-mech": 2,
+            "math-ph": 1,
+            "nlin.CD": 1
+          }
+        }
+      ]
+    },
+    "TF-IDF+SVD(768)": {
+      "label": "TF-IDF + SVD(768) [\u03b3-matched to Nomic]",
+      "N": 747,
+      "D": 747,
+      "gamma": 1.0,
+      "mp_edge": 4.0,
+      "n_signal": 3,
+      "r_global": 0.7441431382920278,
+      "K": 10,
+      "clusters": [
+        {
+          "cluster": 0,
+          "n": 96,
+          "r": 0.5349708427833962,
+          "coherence": 0.022912419092922465,
+          "top_cat": "math.NT",
+          "top_cat_count": 77,
+          "regime": "GOE",
+          "category_dist": {
+            "hep-th": 1,
+            "quant-ph": 1,
+            "math-ph": 7,
+            "nlin.CD": 1,
+            "math.NT": 77,
+            "math.SP": 9
+          }
+        },
+        {
+          "cluster": 1,
+          "n": 95,
+          "r": 0.541961443872034,
+          "coherence": 0.010977885782270906,
+          "top_cat": "physics.bio-ph",
+          "top_cat_count": 48,
+          "regime": "GOE",
+          "category_dist": {
+            "hep-th": 5,
+            "cond-mat.stat-mech": 10,
+            "quant-ph": 20,
+            "math-ph": 3,
+            "nlin.CD": 7,
+            "physics.bio-ph": 48,
+            "cs.LG": 1,
+            "stat.ML": 1
+          }
+        },
+        {
+          "cluster": 2,
+          "n": 109,
+          "r": 0.5082889301247966,
+          "coherence": 0.029171370748533935,
+          "top_cat": "cs.LG",
+          "top_cat_count": 77,
+          "regime": "GOE",
+          "category_dist": {
+            "hep-th": 1,
+            "quant-ph": 1,
+            "nlin.CD": 1,
+            "physics.bio-ph": 2,
+            "cs.LG": 77,
+            "stat.ML": 26,
+            "math.SP": 1
+          }
+        },
+        {
+          "cluster": 3,
+          "n": 83,
+          "r": 0.497772253820855,
+          "coherence": 0.014323486137666425,
+          "top_cat": "nlin.CD",
+          "top_cat_count": 53,
+          "regime": "~Poisson",
+          "category_dist": {
+            "cond-mat.stat-mech": 8,
+            "quant-ph": 2,
+            "math-ph": 13,
+            "nlin.CD": 53,
+            "physics.bio-ph": 4,
+            "cs.LG": 1,
+            "stat.ML": 1,
+            "math.SP": 1
+          }
+        },
+        {
+          "cluster": 4,
+          "n": 70,
+          "r": 0.42878202845947166,
+          "coherence": 0.023736960069828793,
+          "top_cat": "quant-ph",
+          "top_cat_count": 51,
+          "regime": "Poisson",
+          "category_dist": {
+            "hep-th": 6,
+            "cond-mat.stat-mech": 7,
+            "quant-ph": 51,
+            "math-ph": 4,
+            "nlin.CD": 1,
+            "physics.bio-ph": 1
+          }
+        },
+        {
+          "cluster": 5,
+          "n": 70,
+          "r": 0.5114960393417995,
+          "coherence": 0.023124705452401785,
+          "top_cat": "math.SP",
+          "top_cat_count": 38,
+          "regime": "GOE",
+          "category_dist": {
+            "cond-mat.stat-mech": 3,
+            "quant-ph": 3,
+            "math-ph": 24,
+            "nlin.CD": 1,
+            "math.NT": 1,
+            "math.SP": 38
+          }
+        },
+        {
+          "cluster": 6,
+          "n": 78,
+          "r": 0.5396495606330749,
+          "coherence": 0.01684160004117324,
+          "top_cat": "hep-th",
+          "top_cat_count": 54,
+          "regime": "GOE",
+          "category_dist": {
+            "hep-th": 54,
+            "cond-mat.stat-mech": 2,
+            "quant-ph": 3,
+            "math-ph": 14,
+            "physics.bio-ph": 2,
+            "math.NT": 1,
+            "math.SP": 2
+          }
+        },
+        {
+          "cluster": 7,
+          "n": 77,
+          "r": 0.45768951769163596,
+          "coherence": 0.012915593665568739,
+          "top_cat": "cond-mat.stat-mech",
+          "top_cat_count": 40,
+          "regime": "~Poisson",
+          "category_dist": {
+            "hep-th": 5,
+            "cond-mat.stat-mech": 40,
+            "math-ph": 5,
+            "nlin.CD": 10,
+            "physics.bio-ph": 17
+          }
+        },
+        {
+          "cluster": 8,
+          "n": 46,
+          "r": 0.46913398252514854,
+          "coherence": 0.02784170101156586,
+          "top_cat": "cond-mat.stat-mech",
+          "top_cat_count": 24,
+          "regime": "~Poisson",
+          "category_dist": {
+            "hep-th": 9,
+            "cond-mat.stat-mech": 24,
+            "quant-ph": 5,
+            "math-ph": 3,
+            "nlin.CD": 2,
+            "physics.bio-ph": 1,
+            "math.NT": 1,
+            "math.SP": 1
+          }
+        },
+        {
+          "cluster": 9,
+          "n": 23,
+          "r": 0.6193558311963262,
+          "coherence": 0.09651044257157546,
+          "top_cat": "hep-th",
+          "top_cat_count": 19,
+          "regime": "GUE",
+          "category_dist": {
+            "hep-th": 19,
+            "cond-mat.stat-mech": 2,
+            "math-ph": 1,
+            "nlin.CD": 1
+          }
+        }
+      ]
+    },
+    "TF-IDF+SVD(100)": {
+      "label": "TF-IDF + SVD(100) [high-\u03b3 regime]",
+      "N": 747,
+      "D": 100,
+      "gamma": 7.47,
+      "mp_edge": 13.93626014748658,
+      "n_signal": 2,
+      "r_global": null,
+      "K": 10,
+      "clusters": [
+        {
+          "cluster": 0,
+          "n": 71,
+          "r": 0.5531386650272134,
+          "coherence": 0.09850582241245466,
+          "top_cat": "quant-ph",
+          "top_cat_count": 46,
+          "regime": "GOE",
+          "category_dist": {
+            "hep-th": 8,
+            "cond-mat.stat-mech": 9,
+            "quant-ph": 46,
+            "math-ph": 4,
+            "nlin.CD": 3,
+            "physics.bio-ph": 1
+          }
+        },
+        {
+          "cluster": 1,
+          "n": 99,
+          "r": 0.5001988342763529,
+          "coherence": 0.0858558280587849,
+          "top_cat": "math.NT",
+          "top_cat_count": 74,
+          "regime": "GOE",
+          "category_dist": {
+            "hep-th": 2,
+            "quant-ph": 3,
+            "math-ph": 8,
+            "nlin.CD": 2,
+            "math.NT": 74,
+            "math.SP": 10
+          }
+        },
+        {
+          "cluster": 2,
+          "n": 71,
+          "r": 0.5644311537634144,
+          "coherence": 0.07328630202398054,
+          "top_cat": "nlin.CD",
+          "top_cat_count": 40,
+          "regime": "GOE",
+          "category_dist": {
+            "cond-mat.stat-mech": 8,
+            "quant-ph": 2,
+            "math-ph": 14,
+            "nlin.CD": 40,
+            "physics.bio-ph": 6,
+            "stat.ML": 1
+          }
+        },
+        {
+          "cluster": 3,
+          "n": 82,
+          "r": 0.5440048790164397,
+          "coherence": 0.06532799616477016,
+          "top_cat": "cond-mat.stat-mech",
+          "top_cat_count": 48,
+          "regime": "GOE",
+          "category_dist": {
+            "hep-th": 11,
+            "cond-mat.stat-mech": 48,
+            "quant-ph": 2,
+            "math-ph": 5,
+            "nlin.CD": 12,
+            "physics.bio-ph": 3,
+            "math.NT": 1
+          }
+        },
+        {
+          "cluster": 4,
+          "n": 48,
+          "r": 0.5460635314014364,
+          "coherence": 0.1721775042563529,
+          "top_cat": "cs.LG",
+          "top_cat_count": 20,
+          "regime": "GOE",
+          "category_dist": {
+            "cond-mat.stat-mech": 4,
+            "quant-ph": 1,
+            "math-ph": 1,
+            "nlin.CD": 9,
+            "physics.bio-ph": 6,
+            "cs.LG": 20,
+            "stat.ML": 7
+          }
+        },
+        {
+          "cluster": 5,
+          "n": 80,
+          "r": 0.5385082156011667,
+          "coherence": 0.1470883624770427,
+          "top_cat": "cs.LG",
+          "top_cat_count": 58,
+          "regime": "GOE",
+          "category_dist": {
+            "hep-th": 2,
+            "cs.LG": 58,
+            "stat.ML": 19,
+            "math.SP": 1
+          }
+        },
+        {
+          "cluster": 6,
+          "n": 75,
+          "r": 0.462320669824044,
+          "coherence": 0.07717759228543883,
+          "top_cat": "physics.bio-ph",
+          "top_cat_count": 45,
+          "regime": "~Poisson",
+          "category_dist": {
+            "hep-th": 3,
+            "cond-mat.stat-mech": 18,
+            "math-ph": 2,
+            "nlin.CD": 6,
+            "physics.bio-ph": 45,
+            "cs.LG": 1
+          }
+        },
+        {
+          "cluster": 7,
+          "n": 52,
+          "r": 0.5612831951065611,
+          "coherence": 0.1123671184703084,
+          "top_cat": "quant-ph",
+          "top_cat_count": 29,
+          "regime": "GOE",
+          "category_dist": {
+            "hep-th": 2,
+            "cond-mat.stat-mech": 4,
+            "quant-ph": 29,
+            "nlin.CD": 3,
+            "physics.bio-ph": 13,
+            "stat.ML": 1
+          }
+        },
+        {
+          "cluster": 8,
+          "n": 79,
+          "r": 0.5039271379643605,
+          "coherence": 0.08145732864250742,
+          "top_cat": "math.SP",
+          "top_cat_count": 40,
+          "regime": "GOE",
+          "category_dist": {
+            "hep-th": 3,
+            "cond-mat.stat-mech": 2,
+            "quant-ph": 2,
+            "math-ph": 26,
+            "nlin.CD": 2,
+            "math.NT": 4,
+            "math.SP": 40
+          }
+        },
+        {
+          "cluster": 9,
+          "n": 90,
+          "r": 0.5048987457081955,
+          "coherence": 0.0850485461149335,
+          "top_cat": "hep-th",
+          "top_cat_count": 69,
+          "regime": "GOE",
+          "category_dist": {
+            "hep-th": 69,
+            "cond-mat.stat-mech": 3,
+            "quant-ph": 1,
+            "math-ph": 14,
+            "physics.bio-ph": 1,
+            "math.NT": 1,
+            "math.SP": 1
+          }
+        }
+      ]
+    },
+    "NMF(100)": {
+      "label": "NMF (100 topics)",
+      "N": 747,
+      "D": 100,
+      "gamma": 7.47,
+      "mp_edge": 13.93626014748658,
+      "n_signal": 13,
+      "r_global": 0.37181561481118713,
+      "K": 10,
+      "clusters": [
+        {
+          "cluster": 0,
+          "n": 47,
+          "r": 0.4859267401245775,
+          "coherence": 0.3195040367087068,
+          "top_cat": "cond-mat.stat-mech",
+          "top_cat_count": 15,
+          "regime": "~Poisson",
+          "category_dist": {
+            "hep-th": 6,
+            "cond-mat.stat-mech": 15,
+            "quant-ph": 4,
+            "math-ph": 3,
+            "nlin.CD": 7,
+            "physics.bio-ph": 4,
+            "math.NT": 3,
+            "cs.LG": 2,
+            "stat.ML": 2,
+            "math.SP": 1
+          }
+        },
+        {
+          "cluster": 1,
+          "n": 64,
+          "r": 0.5338180387309691,
+          "coherence": 0.1078220219257279,
+          "top_cat": "physics.bio-ph",
+          "top_cat_count": 25,
+          "regime": "GOE",
+          "category_dist": {
+            "cond-mat.stat-mech": 7,
+            "quant-ph": 17,
+            "nlin.CD": 2,
+            "physics.bio-ph": 25,
+            "cs.LG": 11,
+            "stat.ML": 2
+          }
+        },
+        {
+          "cluster": 2,
+          "n": 147,
+          "r": 0.5224208809205432,
+          "coherence": 0.1521044916813921,
+          "top_cat": "nlin.CD",
+          "top_cat_count": 26,
+          "regime": "GOE",
+          "category_dist": {
+            "hep-th": 20,
+            "cond-mat.stat-mech": 23,
+            "quant-ph": 24,
+            "math-ph": 9,
+            "nlin.CD": 26,
+            "physics.bio-ph": 20,
+            "math.NT": 7,
+            "cs.LG": 12,
+            "stat.ML": 4,
+            "math.SP": 2
+          }
+        },
+        {
+          "cluster": 3,
+          "n": 76,
+          "r": 0.5255824901077318,
+          "coherence": 0.14240086680530822,
+          "top_cat": "math.SP",
+          "top_cat_count": 15,
+          "regime": "GOE",
+          "category_dist": {
+            "hep-th": 6,
+            "cond-mat.stat-mech": 5,
+            "quant-ph": 11,
+            "math-ph": 12,
+            "nlin.CD": 7,
+            "physics.bio-ph": 3,
+            "math.NT": 3,
+            "cs.LG": 10,
+            "stat.ML": 4,
+            "math.SP": 15
+          }
+        },
+        {
+          "cluster": 4,
+          "n": 58,
+          "r": 0.4207777866017542,
+          "coherence": 0.19318597654564515,
+          "top_cat": "hep-th",
+          "top_cat_count": 33,
+          "regime": "Poisson",
+          "category_dist": {
+            "hep-th": 33,
+            "cond-mat.stat-mech": 11,
+            "quant-ph": 3,
+            "math-ph": 6,
+            "nlin.CD": 3,
+            "cs.LG": 1,
+            "math.SP": 1
+          }
+        },
+        {
+          "cluster": 5,
+          "n": 92,
+          "r": 0.4994886044657811,
+          "coherence": 0.0905398409184956,
+          "top_cat": "cs.LG",
+          "top_cat_count": 40,
+          "regime": "~Poisson",
+          "category_dist": {
+            "cond-mat.stat-mech": 7,
+            "quant-ph": 14,
+            "nlin.CD": 8,
+            "physics.bio-ph": 7,
+            "math.NT": 1,
+            "cs.LG": 40,
+            "stat.ML": 15
+          }
+        },
+        {
+          "cluster": 6,
+          "n": 37,
+          "r": 0.5632392620691846,
+          "coherence": 0.5379301615325858,
+          "top_cat": "hep-th",
+          "top_cat_count": 10,
+          "regime": "GOE",
+          "category_dist": {
+            "hep-th": 10,
+            "cond-mat.stat-mech": 10,
+            "math-ph": 2,
+            "nlin.CD": 6,
+            "physics.bio-ph": 7,
+            "math.NT": 1,
+            "cs.LG": 1
+          }
+        },
+        {
+          "cluster": 7,
+          "n": 63,
+          "r": 0.47739587891896684,
+          "coherence": 0.20288587426440338,
+          "top_cat": "math.NT",
+          "top_cat_count": 18,
+          "regime": "~Poisson",
+          "category_dist": {
+            "hep-th": 5,
+            "cond-mat.stat-mech": 4,
+            "quant-ph": 5,
+            "math-ph": 10,
+            "nlin.CD": 3,
+            "math.NT": 18,
+            "math.SP": 18
+          }
+        },
+        {
+          "cluster": 8,
+          "n": 97,
+          "r": 0.5340561657087485,
+          "coherence": 0.0932643236276893,
+          "top_cat": "math.NT",
+          "top_cat_count": 40,
+          "regime": "GOE",
+          "category_dist": {
+            "hep-th": 8,
+            "cond-mat.stat-mech": 5,
+            "quant-ph": 6,
+            "math-ph": 15,
+            "nlin.CD": 2,
+            "physics.bio-ph": 6,
+            "math.NT": 40,
+            "cs.LG": 2,
+            "stat.ML": 1,
+            "math.SP": 12
+          }
+        },
+        {
+          "cluster": 9,
+          "n": 66,
+          "r": 0.51725794463277,
+          "coherence": 0.13260125915547485,
+          "top_cat": "math-ph",
+          "top_cat_count": 17,
+          "regime": "GOE",
+          "category_dist": {
+            "hep-th": 12,
+            "cond-mat.stat-mech": 9,
+            "quant-ph": 2,
+            "math-ph": 17,
+            "nlin.CD": 13,
+            "physics.bio-ph": 3,
+            "math.NT": 7,
+            "math.SP": 3
+          }
+        }
+      ]
+    },
+    "Random(768)": {
+      "label": "Random Projection (768D) [control]",
+      "N": 747,
+      "D": 768,
+      "gamma": 0.97265625,
+      "mp_edge": 3.9451229797574374,
+      "n_signal": 23,
+      "r_global": 0.5102553078410524,
+      "K": 10,
+      "clusters": [
+        {
+          "cluster": 0,
+          "n": 64,
+          "r": 0.48930603577907045,
+          "coherence": 0.019281615486746704,
+          "top_cat": "cond-mat.stat-mech",
+          "top_cat_count": 24,
+          "regime": "~Poisson",
+          "category_dist": {
+            "hep-th": 8,
+            "cond-mat.stat-mech": 24,
+            "quant-ph": 6,
+            "math-ph": 8,
+            "nlin.CD": 5,
+            "physics.bio-ph": 7,
+            "math.NT": 4,
+            "stat.ML": 1,
+            "math.SP": 1
+          }
+        },
+        {
+          "cluster": 1,
+          "n": 100,
+          "r": 0.48168508619919026,
+          "coherence": 0.03121330605048911,
+          "top_cat": "cs.LG",
+          "top_cat_count": 65,
+          "regime": "~Poisson",
+          "category_dist": {
+            "hep-th": 2,
+            "cond-mat.stat-mech": 1,
+            "quant-ph": 3,
+            "nlin.CD": 7,
+            "physics.bio-ph": 1,
+            "math.NT": 1,
+            "cs.LG": 65,
+            "stat.ML": 20
+          }
+        },
+        {
+          "cluster": 2,
+          "n": 73,
+          "r": 0.5321488294267563,
+          "coherence": 0.027968656649036597,
+          "top_cat": "math.NT",
+          "top_cat_count": 51,
+          "regime": "GOE",
+          "category_dist": {
+            "hep-th": 3,
+            "cond-mat.stat-mech": 1,
+            "quant-ph": 3,
+            "math-ph": 7,
+            "nlin.CD": 2,
+            "math.NT": 51,
+            "math.SP": 6
+          }
+        },
+        {
+          "cluster": 3,
+          "n": 67,
+          "r": 0.5410402740616066,
+          "coherence": 0.025261710124043445,
+          "top_cat": "quant-ph",
+          "top_cat_count": 38,
+          "regime": "GOE",
+          "category_dist": {
+            "hep-th": 5,
+            "cond-mat.stat-mech": 7,
+            "quant-ph": 38,
+            "math-ph": 4,
+            "nlin.CD": 6,
+            "math.NT": 2,
+            "cs.LG": 3,
+            "stat.ML": 2
+          }
+        },
+        {
+          "cluster": 4,
+          "n": 79,
+          "r": 0.513844809751984,
+          "coherence": 0.023600461848463938,
+          "top_cat": "math.SP",
+          "top_cat_count": 35,
+          "regime": "GOE",
+          "category_dist": {
+            "hep-th": 1,
+            "cond-mat.stat-mech": 1,
+            "quant-ph": 3,
+            "math-ph": 19,
+            "nlin.CD": 2,
+            "math.NT": 15,
+            "cs.LG": 2,
+            "stat.ML": 1,
+            "math.SP": 35
+          }
+        },
+        {
+          "cluster": 5,
+          "n": 75,
+          "r": 0.5006184685057466,
+          "coherence": 0.01981035719453199,
+          "top_cat": "cond-mat.stat-mech",
+          "top_cat_count": 26,
+          "regime": "GOE",
+          "category_dist": {
+            "hep-th": 3,
+            "cond-mat.stat-mech": 26,
+            "quant-ph": 7,
+            "math-ph": 9,
+            "nlin.CD": 21,
+            "physics.bio-ph": 5,
+            "math.NT": 1,
+            "stat.ML": 1,
+            "math.SP": 2
+          }
+        },
+        {
+          "cluster": 6,
+          "n": 65,
+          "r": 0.5885968839534661,
+          "coherence": 0.015598563126066042,
+          "top_cat": "hep-th",
+          "top_cat_count": 24,
+          "regime": "~GUE",
+          "category_dist": {
+            "hep-th": 24,
+            "cond-mat.stat-mech": 6,
+            "quant-ph": 4,
+            "math-ph": 10,
+            "nlin.CD": 3,
+            "physics.bio-ph": 8,
+            "math.NT": 1,
+            "cs.LG": 3,
+            "stat.ML": 2,
+            "math.SP": 4
+          }
+        },
+        {
+          "cluster": 7,
+          "n": 87,
+          "r": 0.5190561447386353,
+          "coherence": 0.01372701167124276,
+          "top_cat": "physics.bio-ph",
+          "top_cat_count": 30,
+          "regime": "GOE",
+          "category_dist": {
+            "hep-th": 13,
+            "cond-mat.stat-mech": 13,
+            "quant-ph": 11,
+            "math-ph": 6,
+            "nlin.CD": 8,
+            "physics.bio-ph": 30,
+            "cs.LG": 4,
+            "math.SP": 2
+          }
+        },
+        {
+          "cluster": 8,
+          "n": 78,
+          "r": 0.5346813609089057,
+          "coherence": 0.014952829230461909,
+          "top_cat": "physics.bio-ph",
+          "top_cat_count": 24,
+          "regime": "GOE",
+          "category_dist": {
+            "hep-th": 2,
+            "cond-mat.stat-mech": 12,
+            "quant-ph": 10,
+            "math-ph": 5,
+            "nlin.CD": 21,
+            "physics.bio-ph": 24,
+            "cs.LG": 2,
+            "stat.ML": 1,
+            "math.SP": 1
+          }
+        },
+        {
+          "cluster": 9,
+          "n": 59,
+          "r": 0.4858807162953866,
+          "coherence": 0.03381671803941576,
+          "top_cat": "hep-th",
+          "top_cat_count": 39,
+          "regime": "~Poisson",
+          "category_dist": {
+            "hep-th": 39,
+            "cond-mat.stat-mech": 5,
+            "quant-ph": 1,
+            "math-ph": 6,
+            "nlin.CD": 2,
+            "math.NT": 5,
+            "math.SP": 1
+          }
+        }
+      ]
+    }
+  }
+}
