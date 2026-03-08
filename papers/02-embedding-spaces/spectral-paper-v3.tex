@@ -1079,10 +1079,12 @@ but not yet on large mixture-of-experts decoders (e.g., DeepSeek R1,
 regime is an open question.
 
 \item The greek\_literary anomaly at layer 5 (failure to compress)
-requires further investigation.  We attribute it to tokenization
-effects (rare polytonic subword tokens in underused embedding
-regions), but cannot rule out structural properties of the language
-itself.
+is consistent with tokenization: Qwen produces 82.8\%
+single-character tokens for polytonic Greek vs.\ 12.8\% for English
+(Section~\ref{sec:trajectories}).  A definitive control would
+require comparing a Greek-specific tokenizer (e.g., GreekBERT)
+against Qwen on the same texts; this is not possible without
+swapping models entirely.
 
 \item The syntactic compression decomposition
 ($\dalpha_{\text{syntactic}}$) is demonstrated but not formalized.
