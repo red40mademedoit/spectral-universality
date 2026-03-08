@@ -53,9 +53,10 @@ dialect-controlled Koine Greek (documentary 1.12, literary authors
 the same dialect (1.90--2.32 for authors with $N \geq 20$;
 0.72--4.88 including small-$N$ authors reported in Supplementary
 Materials).  $\al$ is temporally stable across 1{,}000 years
-of documentary Koine ($\pm 0.01$), robust to subsampling
-(CV $= 0.2\%$), and plausible as a power-law fit (24/25 categories
-pass CSN bootstrap, though lognormal fits equally well).
+of documentary Koine ($\pm 0.01$) and robust to subsampling
+(CV $= 0.2\%$).  Lognormal and power-law fits are statistically
+indistinguishable for most categories; $\al$ discriminates domains
+under either model.
 Leave-one-out cross-validation achieves 52.5\% accuracy
 (13$\times$ chance).  Word shuffle inflates $\al$ by 3--6\% for
 English text with zero token-count change, revealing syntactic
@@ -125,9 +126,9 @@ embedding models (Section~\ref{sec:rbar_invariance}), establishing
 $\rbar$ as a model-geometry diagnostic.
 
 \item We validate $\al$ as a content-dependent spectral fingerprint
-via Clauset--Shalizi--Newman bootstrap (24/25 categories are not
-rejected as power-law), three independent estimators (OLS, MLE,
-Hill), and matched null controls
+via distributional comparison (lognormal and power-law
+statistically indistinguishable for most categories), three
+independent estimators (OLS, MLE, Hill), and matched null controls
 (Sections~\ref{sec:discrimination}--\ref{sec:validation}).
 
 \item We characterize the $N$-dependence of $\al$, showing that rank
@@ -403,15 +404,16 @@ Section~\ref{sec:greek}.)
 \label{sec:loocv}
 
 Leave-one-out cross-validation on $\al$: for each of 10{,}000
-texts, remove it from its category, recompute $\al$ for that
-category using the remaining 399 texts, and assign the held-out
-text to the category whose leave-one-out $\al$ changed least
-(i.e., the category $c$ minimizing
-$|\al_c^{(-i)} - \al_c^{\text{full}}|$).  Intuitively, a text
-belongs to the category whose spectral exponent it least disturbs.
-All 25 categories' $\al$ values are recomputed with the held-out
-text removed from its true category, and classification is by
-nearest $\al$ among the 25 leave-one-out values.
+texts $x_i$ belonging to category $A$, remove $x_i$ from $A$'s
+Gram matrix, re-embed the remaining 399 texts, and recompute
+$\al_A^{(-i)}$.  The other 24 categories are \emph{not modified}:
+$\al_c^{(-i)} = \al_c^{\text{full}}$ for all $c \neq A$.
+Classification: assign $x_i$ to the category whose $\al$ is
+nearest to $\al_A^{(-i)}$.  That is, if removing $x_i$ shifts
+$A$'s exponent closer to category $B$'s than to $A$'s own full
+value, $x_i$ is classified as $B$.  In practice, a text is
+correctly classified when its removal does not shift $\al_A$
+past the midpoint to any neighboring category.
 
 \begin{table}[H]
 \centering
@@ -443,6 +445,12 @@ physics.hist-ph & 70.2\% & & \\
 \end{tabular}
 \end{table}
 
+LOOCV classification depends on rank separation between categories,
+not on per-category significance against the null.  q-bio.MN
+achieves 100\% accuracy despite a weak label-shuffle effect size
+($z = 1.4$, $p = 0.08$) because it occupies the extreme low end of
+the $\al$ distribution---no other category is nearby.
+
 The bimodal distribution is structurally informative.  Categories
 at the extremes of the $\al$ distribution (highest: math.AG; lowest:
 q-bio.MN) achieve 100\% accuracy because their $\al$ values are
@@ -466,16 +474,17 @@ signature is not an artifact of corpus selection.
 \label{sec:validation}
 % ══════════════════════════════════════════════════════════════
 
-\subsection{Power-Law Plausibility (KS $p$-Values)}
+\subsection{Distributional Comparison}
 \label{sec:ks}
 
-CSN bootstrap ($B = 500$) tests whether the power-law hypothesis
-can be rejected for each arXiv category's eigenvalue tail.
+We test both power-law and lognormal fits to each category's
+eigenvalue tail using CSN bootstrap ($B = 500$) and Vuong
+log-likelihood ratio tests \citep{clauset2009}.
 
 \begin{table}[H]
 \centering
-\caption{KS $p$-values for power-law fit (CSN bootstrap, $B=500$,
-$N=400$ per category).  $p \geq 0.10$: plausible.}
+\caption{CSN $p$-values and Vuong lognormal comparison ($B=500$,
+$N=400$ per category).  $R < 0$: lognormal preferred.}
 \label{tab:ks}
 \begin{tabular}{lr|lr}
 \toprule
@@ -749,12 +758,16 @@ collapse to $\al \approx 0.4$--$0.5$.  The network compresses input
 into a low-dimensional architectural format, erasing input-dependent
 spectral structure.  \emph{Exception:} greek\_literary does not
 fully participate in this compression ($\al = 0.91$ at layer 5 vs.\
-$\sim$0.4 for all other domains).  This anomaly likely reflects
-tokenization: polytonic Greek produces rare subword tokens in
-underused embedding regions that resist the compression applied to
-well-represented English tokens.  The soft rank for greek\_literary
-at layer 5 drops only to 0.78 (vs.\ 0.08 for English domains),
-consistent with this interpretation.
+$\sim$0.4 for all other domains).  This anomaly reflects
+tokenization: Qwen's BPE tokenizer produces 82.8\% single-character
+tokens for polytonic Greek literary text (avg.\ 1.19 chars/token)
+versus 12.8\% for English (avg.\ 5.50 chars/token).  Greek text is
+decomposed into byte-level fragments occupying underused embedding
+regions that resist the compression applied to well-represented
+English subwords.  Documentary papyri show a similar pattern
+(77.4\% single-character, 1.32 chars/token).  The soft rank for
+greek\_literary at layer 5 drops only to 0.78 (vs.\ 0.08 for
+English domains), consistent with this interpretation.
 
 \item \textbf{Content-dependent re-expansion (layers 5--70):}
 Domains diverge.  math.AG rises to $\al \approx 1.27$;
@@ -1101,9 +1114,10 @@ effect sizes), across linguistic registers within dialect-controlled
 Koine Greek (documentary 1.12 vs.\ literary authors 1.49 at matched
 $N = 692$), and across individual authors within the same dialect.
 It is temporally stable across 1{,}000 years of documentary papyri
-($\pm 0.01$), robust to subsampling (CV $= 0.2\%$), and plausible
-as a power-law fit (24/25 categories not rejected by CSN bootstrap,
-though lognormal fits equally well).  LOOCV achieves 52.5\%
+($\pm 0.01$) and robust to subsampling (CV $= 0.2\%$).  Lognormal
+is weakly preferred over power-law for all 25 categories (Vuong
+$R < 0$), but $\al$ discriminates domains under either distributional
+model.  LOOCV achieves 52.5\%
 classification accuracy (13$\times$ chance), with 100\% accuracy at
 the extremes of the $\al$ distribution and 0\% in the middle---the
 expected behavior of a scalar diagnostic.
