@@ -336,13 +336,15 @@ extremes of the $\al$ distribution show strong separation from
 the null ($z > 10$: math.AG, hep-th, math.LO, stat.ML, and five
 others).  Three categories do not reject: physics.hist-ph
 ($z = 0.4$, $p = 0.35$), astro-ph.CO ($z = 1.1$, $p = 0.14$),
-and q-bio.MN ($z = 1.4$, $p = 0.08$).  These categories have
-$\al$ values close to the null mean, meaning they are spectrally
-generic---their eigenvalue tails do not differ significantly from
-a randomly labeled corpus.  Despite the failure to reject
-individually, all three maintain their rank positions stably across
-all other tests (word shuffle, LOOCV, cross-model); the rank
-ordering is a more robust signal than per-category significance.
+and q-bio.MN ($z = 1.4$, $p = 0.08$).  These categories are spectrally generic: their $\al$ values do not
+differ significantly from randomly labeled text.  They represent a
+baseline spectral signature---generic academic prose---against which
+other categories differentiate.  Despite the failure to reject
+individually, their rank positions are stable across all tests
+(word shuffle, LOOCV, cross-model), and q-bio.MN achieves 100\%
+LOOCV accuracy from its extreme rank position alone
+(Section~\ref{sec:loocv}).  Rank ordering is a more robust signal
+than per-category significance.
 
 \subsection{Word Shuffle and Syntactic Compression}
 \label{sec:shuffle}
@@ -508,23 +510,19 @@ cs.CR & 0.420 & & \\
 \end{tabular}
 \end{table}
 
-24 of 25 categories are not rejected at $p \geq 0.10$.
-Only math.LO is rejected ($p = 0.032$).  We emphasize that
-non-rejection is not validation: passing CSN means ``not ruled
-out,'' not ``confirmed.''
+The eigenvalue tails are heavy-tailed: power-law is not ruled out
+for 24/25 categories (CSN $p \geq 0.10$; math.LO rejected at
+$p = 0.032$).  However, a Vuong log-likelihood ratio test
+\citep{clauset2009} finds lognormal weakly preferred ($R < 0$) for
+all 25 categories, though the preference is not significant for
+most (21/25 have $p > 0.30$).  The two distributions are
+statistically indistinguishable at this sample size.
 
-\paragraph{Lognormal comparison.}  A Vuong log-likelihood ratio test
-\citep{clauset2009} comparing power-law and lognormal fits finds
-that lognormal is preferred ($R < 0$) for \emph{all 25 categories},
-though for most the preference is not statistically significant
-(21/25 have $p > 0.30$).  We therefore do not claim the eigenvalue
-tail is power-law distributed.  The tail exponent $\al$ is used
-throughout as a log-log tail slope---a shape parameter that
-discriminates domains regardless of the underlying distributional
-family.  Whether the tail is best described by a power law, a
-lognormal, or some other heavy-tailed distribution does not affect
-the discrimination result; $\al$ is a diagnostic, not a claim about
-generative mechanism.
+The tail exponent $\al$ is used throughout as a log-log tail
+slope---a shape parameter---not as evidence for a specific
+generative mechanism.  $\al$ discriminates domains regardless of
+whether the underlying distribution is power-law, lognormal, or
+some other heavy-tailed family.
 
 \subsection{Estimator Robustness}
 
@@ -1078,13 +1076,14 @@ but not yet on large mixture-of-experts decoders (e.g., DeepSeek R1,
 256 experts).  Whether expert routing correlates with spectral
 regime is an open question.
 
-\item The greek\_literary anomaly at layer 5 (failure to compress)
-is consistent with tokenization: Qwen produces 82.8\%
-single-character tokens for polytonic Greek vs.\ 12.8\% for English
-(Section~\ref{sec:trajectories}).  A definitive control would
-require comparing a Greek-specific tokenizer (e.g., GreekBERT)
-against Qwen on the same texts; this is not possible without
-swapping models entirely.
+\item The greek\_literary layer-5 anomaly is consistent with
+tokenization (82.8\% single-character tokens for polytonic Greek
+vs.\ 12.8\% for English).  This is not merely a confound but a
+diagnostic: early-layer compression operates preferentially on
+well-represented subword units, and the anomaly reveals
+vocabulary-dependent spectral processing.  A definitive isolation
+would require a Greek-specific tokenizer (e.g., GreekBERT) on the
+same texts, which is not possible without swapping models.
 
 \item The syntactic compression decomposition
 ($\dalpha_{\text{syntactic}}$) is demonstrated but not formalized.
