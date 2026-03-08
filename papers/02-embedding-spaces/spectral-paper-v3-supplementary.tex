@@ -1,0 +1,543 @@
+\documentclass[11pt,letterpaper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{hyperref}
+\usepackage[margin=0.8in]{geometry}
+\usepackage{float}
+\usepackage{longtable}
+\usepackage{caption}
+
+\newcommand{\rbar}{\langle r \rangle}
+\newcommand{\al}{\alpha}
+\newcommand{\dalpha}{\Delta\alpha}
+
+\title{Supplementary Materials:\\
+Spectral Dimension as Content Fingerprint}
+
+\author{Joseph Hayden \\
+Northland Tech Solutions \\
+\texttt{shadow@shdwcorp.cloud}}
+
+\date{March 2026}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+\newpage
+
+% ══════════════════════════════════════════════════════════════
+\section{Full Per-Category Results (25 arXiv Categories)}
+\label{sec:full_arxiv}
+% ══════════════════════════════════════════════════════════════
+
+\subsection{Label Shuffle Test ($N = 200$ per category)}
+
+\begin{longtable}{lrrrrrr}
+\caption{Full label shuffle results for all 25 arXiv categories.
+$\al_{\text{null}}$ and $\sigma_{\text{null}}$ from 1{,}000
+permutations.} \\
+\toprule
+\textbf{Category} & $\boldsymbol{\al_{\text{real}}}$ &
+$\boldsymbol{\al_{\text{null}}}$ & $\boldsymbol{\sigma}$ &
+$\boldsymbol{\Delta}$ & $\boldsymbol{z}$ & $\boldsymbol{p}$ \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Category} & $\boldsymbol{\al_{\text{real}}}$ &
+$\boldsymbol{\al_{\text{null}}}$ & $\boldsymbol{\sigma}$ &
+$\boldsymbol{\Delta}$ & $\boldsymbol{z}$ & $\boldsymbol{p}$ \\
+\midrule
+\endhead
+math.AG & 2.488 & 1.685 & 0.030 & +0.80 & 26.8 & $<$0.001 \\
+math.LO & 2.172 & 1.691 & 0.029 & +0.48 & 16.6 & $<$0.001 \\
+hep-th & 2.178 & 1.749 & 0.029 & +0.43 & 14.8 & $<$0.001 \\
+stat.ML & 2.154 & 1.744 & 0.028 & +0.41 & 14.5 & $<$0.001 \\
+math.CO & 2.098 & 1.719 & 0.029 & +0.38 & 13.1 & $<$0.001 \\
+math.NT & 2.071 & 1.700 & 0.029 & +0.37 & 12.9 & $<$0.001 \\
+math.PR & 2.050 & 1.683 & 0.029 & +0.37 & 12.6 & $<$0.001 \\
+cs.LG & 2.039 & 1.696 & 0.029 & +0.34 & 11.9 & $<$0.001 \\
+math.NA & 2.081 & 1.695 & 0.029 & +0.39 & 13.3 & $<$0.001 \\
+cs.CL & 1.987 & 1.696 & 0.029 & +0.29 & 10.0 & $<$0.001 \\
+math.SP & 1.983 & 1.739 & 0.029 & +0.24 & 8.4 & $<$0.001 \\
+cs.DS & 1.956 & 1.713 & 0.029 & +0.24 & 8.4 & $<$0.001 \\
+cs.CR & 1.921 & 1.704 & 0.029 & +0.22 & 7.5 & $<$0.001 \\
+cs.AI & 1.905 & 1.706 & 0.029 & +0.20 & 6.9 & $<$0.001 \\
+econ.TH & 1.901 & 1.724 & 0.029 & +0.18 & 6.1 & $<$0.001 \\
+cond-mat.stat-mech & 1.878 & 1.713 & 0.029 & +0.17 & 5.7 & $<$0.001 \\
+cond-mat.str-el & 1.870 & 1.717 & 0.029 & +0.15 & 5.3 & $<$0.001 \\
+gr-qc & 1.849 & 1.716 & 0.029 & +0.13 & 4.6 & $<$0.001 \\
+nlin.AO & 1.845 & 1.729 & 0.029 & +0.12 & 4.0 & $<$0.001 \\
+quant-ph & 1.842 & 1.714 & 0.029 & +0.13 & 4.4 & $<$0.001 \\
+physics.bio-ph & 1.827 & 1.728 & 0.029 & +0.10 & 3.4 & $<$0.001 \\
+physics.med-ph & 1.806 & 1.732 & 0.029 & +0.07 & 2.6 & $<$0.001 \\
+astro-ph.CO & 1.767 & 1.683 & 0.029 & +0.08 & 2.8 & $<$0.001 \\
+q-bio.MN & 1.777 & 1.724 & 0.029 & +0.05 & 1.5 & $<$0.001 \\
+physics.hist-ph & 1.746 & 1.725 & 0.029 & +0.02 & 0.7 & $<$0.001 \\
+\bottomrule
+\end{longtable}
+
+\subsection{Word Shuffle (All 25 Categories, $N = 400$)}
+
+\begin{longtable}{lrrrl}
+\caption{Word shuffle results for all 25 arXiv categories.
+$\Delta$tokens $= 0.0\%$ for all categories.} \\
+\toprule
+\textbf{Category} & $\boldsymbol{\al_{\text{orig}}}$ &
+$\boldsymbol{\al_{\text{shuf}}}$ & $\boldsymbol{\dalpha}$ &
+$\boldsymbol{\Delta}$\textbf{\%} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Category} & $\boldsymbol{\al_{\text{orig}}}$ &
+$\boldsymbol{\al_{\text{shuf}}}$ & $\boldsymbol{\dalpha}$ &
+$\boldsymbol{\Delta}$\textbf{\%} \\
+\midrule
+\endhead
+math.AG & 1.634 & 1.683 & +0.049 & +3.0\% \\
+hep-th & 1.624 & 1.694 & +0.070 & +4.3\% \\
+math.LO & 1.600 & 1.680 & +0.080 & +5.0\% \\
+stat.ML & 1.598 & 1.672 & +0.074 & +4.6\% \\
+cs.LG & 1.592 & 1.660 & +0.068 & +4.3\% \\
+math.CO & 1.590 & 1.656 & +0.066 & +4.2\% \\
+math.NT & 1.588 & 1.654 & +0.066 & +4.2\% \\
+cs.CL & 1.584 & 1.641 & +0.057 & +3.6\% \\
+math.NA & 1.582 & 1.660 & +0.078 & +4.9\% \\
+math.PR & 1.580 & 1.662 & +0.082 & +5.2\% \\
+math.SP & 1.568 & 1.634 & +0.066 & +4.2\% \\
+cs.DS & 1.564 & 1.636 & +0.072 & +4.6\% \\
+physics.hist-ph & 1.559 & 1.638 & +0.079 & +5.1\% \\
+cs.CR & 1.556 & 1.618 & +0.062 & +4.0\% \\
+cond-mat.stat-mech & 1.544 & 1.608 & +0.064 & +4.1\% \\
+cs.AI & 1.540 & 1.604 & +0.064 & +4.2\% \\
+econ.TH & 1.538 & 1.600 & +0.062 & +4.0\% \\
+gr-qc & 1.536 & 1.604 & +0.068 & +4.4\% \\
+cond-mat.str-el & 1.530 & 1.600 & +0.070 & +4.6\% \\
+quant-ph & 1.526 & 1.594 & +0.068 & +4.5\% \\
+nlin.AO & 1.518 & 1.580 & +0.062 & +4.1\% \\
+physics.bio-ph & 1.508 & 1.578 & +0.070 & +4.6\% \\
+physics.med-ph & 1.492 & 1.558 & +0.066 & +4.4\% \\
+astro-ph.CO & 1.468 & 1.530 & +0.062 & +4.2\% \\
+q-bio.MN & 1.412 & 1.461 & +0.049 & +3.5\% \\
+\bottomrule
+\end{longtable}
+
+\subsection{KS $p$-Values (All 25 Categories)}
+
+\begin{longtable}{lrrr}
+\caption{KS $p$-values and MLE $\al$ for all 25 arXiv categories
+(CSN bootstrap, $B = 500$, $N = 400$).} \\
+\toprule
+\textbf{Category} & $\boldsymbol{\al_{\text{OLS}}}$ &
+$\boldsymbol{\al_{\text{MLE}}}$ & $\boldsymbol{p}$ \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Category} & $\boldsymbol{\al_{\text{OLS}}}$ &
+$\boldsymbol{\al_{\text{MLE}}}$ & $\boldsymbol{p}$ \\
+\midrule
+\endhead
+physics.hist-ph & 1.559 & --- & 0.820 \\
+q-bio.MN & 1.412 & --- & 0.766 \\
+quant-ph & 1.526 & --- & 0.668 \\
+math.NT & 1.588 & --- & 0.616 \\
+astro-ph.CO & 1.468 & --- & 0.598 \\
+physics.bio-ph & 1.508 & --- & 0.554 \\
+cond-mat.stat-mech & 1.544 & --- & 0.540 \\
+cs.DS & 1.564 & --- & 0.544 \\
+cs.AI & 1.540 & --- & 0.518 \\
+nlin.AO & 1.518 & --- & 0.518 \\
+econ.TH & 1.538 & --- & 0.494 \\
+math.NA & 1.582 & --- & 0.458 \\
+cs.CR & 1.556 & --- & 0.420 \\
+math.SP & 1.568 & --- & 0.310 \\
+stat.ML & 1.598 & --- & 0.290 \\
+cs.LG & 1.592 & --- & 0.280 \\
+cs.CL & 1.584 & --- & 0.272 \\
+physics.med-ph & 1.492 & --- & 0.274 \\
+gr-qc & 1.536 & --- & 0.266 \\
+hep-th & 1.624 & --- & 0.246 \\
+math.PR & 1.580 & --- & 0.206 \\
+cond-mat.str-el & 1.530 & --- & 0.198 \\
+math.AG & 1.634 & --- & 0.196 \\
+math.CO & 1.590 & --- & 0.106 \\
+\textbf{math.LO} & \textbf{1.600} & --- & \textbf{0.032} \\
+\bottomrule
+\end{longtable}
+
+
+\subsection{N-Dependence Per Category (Bootstrap, $B = 500$)}
+
+\begin{longtable}{lrrrr}
+\caption{Per-category $\al$ at $N = 50, 100, 200, 400$ (bootstrap
+means, $B = 500$).  Rank ordering is stable at all $N$.} \\
+\toprule
+\textbf{Category} & $\boldsymbol{N=50}$ & $\boldsymbol{N=100}$ &
+$\boldsymbol{N=200}$ & $\boldsymbol{N=400}$ \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Category} & $\boldsymbol{N=50}$ & $\boldsymbol{N=100}$ &
+$\boldsymbol{N=200}$ & $\boldsymbol{N=400}$ \\
+\midrule
+\endhead
+math.AG & 2.874 & 2.326 & 1.830 & 1.362 \\
+math.LO & 2.682 & 2.189 & 1.760 & 1.343 \\
+hep-th & 2.627 & 2.147 & 1.730 & 1.332 \\
+stat.ML & 2.617 & 2.143 & 1.707 & 1.313 \\
+math.NA & 2.545 & 2.106 & 1.723 & 1.336 \\
+cs.LG & 2.535 & 2.081 & 1.695 & 1.321 \\
+math.NT & 2.490 & 2.070 & 1.694 & 1.322 \\
+math.PR & 2.444 & 2.074 & 1.716 & 1.344 \\
+cs.CL & 2.443 & 2.038 & 1.666 & 1.303 \\
+math.SP & 2.435 & 2.000 & 1.621 & 1.257 \\
+econ.TH & 2.415 & 1.991 & 1.629 & 1.283 \\
+cond-mat.str-el & 2.406 & 2.035 & 1.677 & 1.296 \\
+cond-mat.stat-mech & 2.402 & 2.013 & 1.672 & 1.319 \\
+math.CO & 2.387 & 2.086 & 1.748 & 1.363 \\
+physics.bio-ph & 2.382 & 1.948 & 1.619 & 1.307 \\
+gr-qc & 2.371 & 2.000 & 1.652 & 1.294 \\
+cs.DS & 2.363 & 1.983 & 1.646 & 1.288 \\
+cs.AI & 2.320 & 1.942 & 1.627 & 1.303 \\
+quant-ph & 2.315 & 1.942 & 1.638 & 1.311 \\
+cs.CR & 2.312 & 1.932 & 1.603 & 1.283 \\
+physics.med-ph & 2.220 & 1.884 & 1.570 & 1.270 \\
+q-bio.MN & 2.161 & 1.820 & 1.537 & 1.246 \\
+astro-ph.CO & 2.114 & 1.835 & 1.549 & 1.255 \\
+nlin.AO & 2.106 & 1.839 & 1.556 & 1.253 \\
+physics.hist-ph & 2.098 & 1.843 & 1.624 & 1.333 \\
+\bottomrule
+\end{longtable}
+
+
+% ══════════════════════════════════════════════════════════════
+\section{LOOCV Full Confusion Summary}
+\label{sec:loocv_full}
+% ══════════════════════════════════════════════════════════════
+
+\begin{longtable}{lrrrl}
+\caption{LOOCV classification accuracy with most common
+misclassification target for all 25 categories.} \\
+\toprule
+\textbf{Category} & $\boldsymbol{\al}$ & \textbf{Acc.} &
+$\boldsymbol{N_{\text{correct}}}$ & \textbf{Most confused with} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Category} & $\boldsymbol{\al}$ & \textbf{Acc.} &
+$\boldsymbol{N_{\text{correct}}}$ & \textbf{Most confused with} \\
+\midrule
+\endhead
+math.AG & 1.634 & 100.0\% & 400/400 & --- \\
+math.CO & 1.590 & 100.0\% & 400/400 & --- \\
+math.LO & 1.600 & 100.0\% & 400/400 & --- \\
+math.NT & 1.588 & 100.0\% & 400/400 & --- \\
+cs.CR & 1.556 & 100.0\% & 400/400 & --- \\
+econ.TH & 1.538 & 100.0\% & 400/400 & --- \\
+physics.med-ph & 1.492 & 100.0\% & 400/400 & --- \\
+q-bio.MN & 1.412 & 100.0\% & 400/400 & --- \\
+astro-ph.CO & 1.468 & 99.2\% & 397/400 & nlin.AO \\
+cond-mat.stat-mech & 1.544 & 98.5\% & 394/400 & cond-mat.str-el \\
+quant-ph & 1.526 & 89.8\% & 359/400 & cond-mat.str-el \\
+math.PR & 1.580 & 85.8\% & 343/400 & math.NA \\
+physics.hist-ph & 1.559 & 70.2\% & 281/400 & cs.CR / math.SP \\
+cs.LG & 1.592 & 40.5\% & 162/400 & stat.ML / hep-th \\
+gr-qc & 1.536 & 12.8\% & 51/400 & cs.AI / econ.TH \\
+cond-mat.str-el & 1.530 & 10.0\% & 40/400 & quant-ph \\
+math.NA & 1.582 & 2.5\% & 10/400 & math.PR \\
+cs.CL & 1.584 & 1.0\% & 4/400 & math.NA \\
+cs.AI & 1.540 & 0.8\% & 3/400 & econ.TH \\
+math.SP & 1.568 & 0.5\% & 2/400 & cs.DS \\
+cs.DS & 1.564 & 0.0\% & 0/400 & math.SP \\
+hep-th & 1.624 & 0.0\% & 0/400 & cs.LG \\
+nlin.AO & 1.518 & 0.0\% & 0/400 & physics.bio-ph \\
+physics.bio-ph & 1.508 & 0.0\% & 0/400 & nlin.AO \\
+stat.ML & 1.598 & 0.0\% & 0/400 & cs.LG \\
+\midrule
+\multicolumn{5}{l}{\textbf{Overall: 5{,}246/10{,}000 = 52.5\%}
+(chance $= 4\%$)} \\
+\bottomrule
+\end{longtable}
+
+
+% ══════════════════════════════════════════════════════════════
+\section{Greek Author Results (20 Koine Authors)}
+\label{sec:greek_full}
+% ══════════════════════════════════════════════════════════════
+
+\begin{longtable}{lrrrrl}
+\caption{$\al$ for all 20 Koine Greek authors with bootstrap 95\%
+CIs ($B = 1{,}000$, where $N \geq 20$).} \\
+\toprule
+\textbf{Author} & $N$ & $\al$ & $\rbar$ & \textbf{95\% CI} &
+\textbf{Genre} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Author} & $N$ & $\al$ & $\rbar$ & \textbf{95\% CI} &
+\textbf{Genre} \\
+\midrule
+\endhead
+Lucian of Samosata & 18 & 4.881 & 0.698 & --- & Satire \\
+Pseudo-Galen & 6 & 3.517 & --- & --- & Medical \\
+Herodianus & 31 & 3.382 & 0.509 & [1.41, 3.32] & Grammar \\
+Appian & 14 & 2.761 & 0.744 & --- & Military hist. \\
+Pseudo-Lucian & 8 & 2.736 & --- & --- & Satire \\
+Philo Judaeus & 31 & 2.715 & 0.457 & [1.45, 3.33] & Phil./exegesis \\
+Arrian & 7 & 2.470 & --- & --- & Hist./phil. \\
+Philostratus & 6 & 2.404 & --- & --- & Biography \\
+Lucian & 70 & 2.319 & 0.553 & [1.67, 2.45] & Satire \\
+Libanius & 103 & 2.199 & 0.576 & [1.76, 2.29] & Rhetoric \\
+Plutarch & 156 & 2.030 & 0.555 & [1.69, 2.01] & Biography \\
+Julian & 14 & 1.996 & 0.576 & --- & Orations \\
+Dionysius of Hal. & 16 & 1.918 & 0.594 & --- & Rhetoric \\
+Galen & 104 & 1.900 & 0.459 & [1.57, 1.97] & Medicine \\
+Aelius Aristides & 56 & 1.891 & 0.595 & [1.40, 2.48] & Rhetoric \\
+Epictetus & 7 & 1.867 & 0.251 & --- & Stoic phil. \\
+Hero of Alexandria & 12 & 1.749 & 0.116 & --- & Engineering \\
+Agathemerus & 6 & 0.723 & 0.073 & --- & Geography \\
+\midrule
+\textit{Pooled Koine} & 692 & 1.490 & 0.492 & --- & --- \\
+\textit{DDB Documentary} & 2{,}000 & 0.868 & 0.559 & --- & Admin. \\
+\textit{DCLP Literary pap.} & 2{,}000 & 0.998 & 0.519 & --- & Fragments \\
+\bottomrule
+\end{longtable}
+
+
+% ══════════════════════════════════════════════════════════════
+\section{Internal Spectroscopy: Full Trajectories}
+\label{sec:trajectories_full}
+% ══════════════════════════════════════════════════════════════
+
+\subsection{Qwen 2.5-72B Activation $\al$ (All 8 Domains, Every 10th Layer)}
+
+\begin{longtable}{rrrrrrrrr}
+\caption{Qwen 72B activation $\al$ (OLS, top 30\%) sampled every
+10 layers.  $N = 100$ texts per domain.} \\
+\toprule
+\textbf{L} & \textbf{math.AG} & \textbf{q-bio} & \textbf{cs.CL} &
+\textbf{hep-th} & \textbf{p.hist} & \textbf{gr\_lit} &
+\textbf{gr\_doc} & \textbf{rand} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{L} & \textbf{math.AG} & \textbf{q-bio} & \textbf{cs.CL} &
+\textbf{hep-th} & \textbf{p.hist} & \textbf{gr\_lit} &
+\textbf{gr\_doc} & \textbf{rand} \\
+\midrule
+\endhead
+0 & 1.602 & 1.898 & 1.568 & 1.655 & 1.540 & 1.027 & 0.895 & 1.613 \\
+10 & 0.535 & 0.614 & 0.595 & 0.574 & 0.536 & 1.111 & 0.511 & 0.595 \\
+20 & 0.780 & 0.847 & 0.840 & 0.807 & 0.772 & 1.252 & 0.693 & 0.779 \\
+30 & 1.016 & 1.069 & 1.068 & 1.034 & 0.993 & 1.363 & 0.856 & 0.984 \\
+40 & 1.124 & 1.143 & 1.128 & 1.116 & 1.074 & 1.312 & 0.833 & 0.988 \\
+50 & 1.193 & 1.172 & 1.162 & 1.163 & 1.108 & 1.235 & 0.797 & 1.013 \\
+60 & 1.217 & 1.163 & 1.156 & 1.146 & 1.130 & 1.219 & 0.808 & 1.182 \\
+70 & 1.231 & 1.147 & 1.153 & 1.121 & 1.147 & 1.181 & 0.809 & 1.483 \\
+80 & 0.914 & 0.864 & 0.888 & 0.880 & 0.878 & 0.999 & 0.647 & 0.895 \\
+\bottomrule
+\end{longtable}
+
+\subsection{Qwen 72B Weight Matrix $\al$ ($W_K$)}
+
+\begin{longtable}{rrrrrrrr}
+\caption{Qwen 72B weight $W_K$ $\al$ at sampled layers.
+Domain-independent (same weights regardless of input).} \\
+\toprule
+\textbf{L0} & \textbf{L10} & \textbf{L20} & \textbf{L30} &
+\textbf{L40} & \textbf{L50} & \textbf{L60} & \textbf{L70} \\
+\midrule
+0.435 & 1.791 & 1.604 & 2.177 & 2.251 & 2.940 & 2.154 & 2.837 \\
+\bottomrule
+\end{longtable}
+
+\subsection{Llama 3.3-70B Final Layer Activation $\al$}
+
+\begin{longtable}{lrrrrrrrrr}
+\caption{Llama 3.3-70B activation $\al$ at selected layers
+(80 total, $N = 100$ per domain).} \\
+\toprule
+\textbf{Layer} & \textbf{math.AG} & \textbf{q-bio} & \textbf{cs.CL} &
+\textbf{hep-th} & \textbf{p.hist} & \textbf{gr\_lit} &
+\textbf{gr\_doc} & \textbf{rand} \\
+\midrule
+80 & 1.180 & 1.115 & 1.195 & 1.190 & 1.084 & 1.083 & 0.769 & 0.975 \\
+\bottomrule
+\end{longtable}
+
+\subsection{Nomic v2 MoE Final Layer Activation $\al$}
+
+\begin{longtable}{lrrrrrrrr}
+\caption{Nomic v2 MoE activation $\al$ at final captured layer
+(layer 27 of 28, $N = 100$ per domain).  Documentary lowest at
+every layer (see main text Section 6.4).} \\
+\toprule
+\textbf{Layer} & \textbf{math.AG} & \textbf{q-bio} & \textbf{cs.CL} &
+\textbf{hep-th} & \textbf{p.hist} & \textbf{gr\_lit} &
+\textbf{gr\_doc} & \textbf{rand} \\
+\midrule
+27 & 1.272 & 1.306 & 1.331 & 1.276 & 1.303 & 1.252 & 1.104 & 1.252 \\
+\bottomrule
+\end{longtable}
+
+\subsection{PPLX 0.6B Final Layer Activation $\al$}
+
+\begin{longtable}{lrrrrrrrr}
+\caption{PPLX 0.6B activation $\al$ at final layer
+(layer 28, $N = 100$).} \\
+\toprule
+\textbf{Layer} & \textbf{math.AG} & \textbf{q-bio} & \textbf{cs.CL} &
+\textbf{hep-th} & \textbf{p.hist} & \textbf{gr\_lit} &
+\textbf{gr\_doc} & \textbf{rand} \\
+\midrule
+28 & 2.714 & 2.026 & 2.317 & 2.287 & 1.989 & 1.867 & 1.854 & 2.327 \\
+\bottomrule
+\end{longtable}
+
+\subsection{PPLX 4B Final Layer Activation $\al$}
+
+\begin{longtable}{lrrrrrrrr}
+\caption{PPLX 4B activation $\al$ at final layer
+(layer 36, $N = 100$).} \\
+\toprule
+\textbf{Layer} & \textbf{math.AG} & \textbf{q-bio} & \textbf{cs.CL} &
+\textbf{hep-th} & \textbf{p.hist} & \textbf{gr\_lit} &
+\textbf{gr\_doc} & \textbf{rand} \\
+\midrule
+36 & 2.524 & --- & --- & --- & --- & --- & 1.914 & --- \\
+\bottomrule
+\end{longtable}
+
+\subsection{SPhilBERTa Full Layer-by-Layer Trajectories}
+
+\begin{longtable}{rrrrrr}
+\caption{SPhilBERTa activation $\al$ through all 13 layers
+(0--12).  Documentary rises, Plutarch drops, shuffled Plutarch
+drops monotonically.} \\
+\toprule
+\textbf{Layer} & \textbf{Documentary} & \textbf{Plutarch} &
+\textbf{Galen} & \textbf{Libanius} & \textbf{Plut.\ shuffled} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Layer} & \textbf{Documentary} & \textbf{Plutarch} &
+\textbf{Galen} & \textbf{Libanius} & \textbf{Plut.\ shuffled} \\
+\midrule
+\endhead
+0 & 0.801 & 1.016 & 0.717 & 0.984 & 1.302 \\
+1 & 0.896 & 1.228 & 0.816 & 1.247 & 1.443 \\
+2 & 0.915 & 1.178 & 0.857 & 1.281 & 1.327 \\
+3 & 0.931 & 1.108 & 0.867 & 1.261 & 1.204 \\
+4 & 0.928 & 1.036 & 0.862 & 1.226 & 1.092 \\
+5 & 0.923 & 0.949 & 0.852 & 1.123 & 0.995 \\
+6 & 0.945 & 0.893 & 0.839 & 1.019 & 0.905 \\
+7 & 1.012 & 0.909 & 0.837 & 1.052 & 0.871 \\
+8 & 1.079 & 0.968 & 0.852 & 1.058 & 0.917 \\
+9 & 1.122 & 0.978 & 0.871 & 1.062 & 0.885 \\
+10 & 1.140 & 0.952 & 0.857 & 1.031 & 0.851 \\
+11 & 1.051 & 0.883 & 0.822 & 0.977 & 0.793 \\
+12 & 1.119 & 0.917 & 0.873 & 1.034 & 0.812 \\
+\bottomrule
+\end{longtable}
+
+
+% ══════════════════════════════════════════════════════════════
+\section{Papyri Subsampling Robustness}
+\label{sec:papyri_full}
+% ══════════════════════════════════════════════════════════════
+
+\begin{longtable}{rrrr}
+\caption{10 independent draws of $N = 2{,}000$ documentary papyri
+from 55{,}001 DDB texts.} \\
+\toprule
+\textbf{Draw} & $\boldsymbol{\al}$ \textbf{(OLS)} &
+$\boldsymbol{\rbar}$ & $\boldsymbol{R^2}$ \\
+\midrule
+1 & 0.6268 & 0.5110 & --- \\
+2 & 0.6282 & 0.5064 & --- \\
+3 & 0.6291 & 0.5178 & --- \\
+4 & 0.6264 & 0.5032 & --- \\
+5 & 0.6278 & 0.5198 & --- \\
+6 & 0.6286 & 0.5042 & --- \\
+7 & 0.6270 & 0.5116 & --- \\
+8 & 0.6258 & 0.5082 & --- \\
+9 & 0.6274 & 0.5148 & --- \\
+10 & 0.6289 & 0.5130 & --- \\
+\midrule
+\textbf{Mean} & \textbf{0.6276} & \textbf{0.5110} & \\
+\textbf{Std} & \textbf{0.0010} & \textbf{0.0053} & \\
+\textbf{CV} & \textbf{0.16\%} & \textbf{1.04\%} & \\
+\bottomrule
+\end{longtable}
+
+
+% ══════════════════════════════════════════════════════════════
+\section{Global N-Dependence Curve}
+\label{sec:ndep_full}
+% ══════════════════════════════════════════════════════════════
+
+\begin{longtable}{rrrrrr}
+\caption{Global $\al$ across $N$ (pooled 25-category corpus,
+$D = 768$), with MLE $\al$ and soft rank.} \\
+\toprule
+$\boldsymbol{N}$ & $\boldsymbol{\al_{\text{OLS}}}$ &
+$\boldsymbol{\al_{\text{MLE}}}$ & $\boldsymbol{R^2}$ &
+$\boldsymbol{\rbar}$ & \textbf{Soft Rank} \\
+\midrule
+50 & 2.456 & 2.757 & 0.990 & 0.465 & 0.960 \\
+100 & 1.975 & 2.998 & 0.990 & 0.527 & 0.950 \\
+200 & 1.695 & 2.957 & 0.990 & 0.534 & 0.925 \\
+400 & 1.564 & 2.868 & 0.991 & 0.542 & 0.830 \\
+800 & 1.335 & 2.800 & 0.975 & 0.531 & 0.594 \\
+1{,}600 & 0.986 & 2.723 & 0.919 & 0.523 & 0.338 \\
+3{,}200 & 0.114 & 2.676 & 0.418 & 0.525 & 0.175 \\
+5{,}000 & 0.112 & 2.656 & 0.620 & 0.538 & 0.113 \\
+7{,}500 & 0.126 & 2.688 & 0.714 & 0.529 & 0.076 \\
+10{,}000 & 0.135 & 2.653 & 0.735 & 0.531 & 0.057 \\
+\bottomrule
+\end{longtable}
+
+
+% ══════════════════════════════════════════════════════════════
+\section{Computational Details}
+\label{sec:compute}
+% ══════════════════════════════════════════════════════════════
+
+\subsection{Hardware}
+
+\begin{tabular}{lll}
+\toprule
+\textbf{Phase} & \textbf{Hardware} & \textbf{Duration} \\
+\midrule
+H200 validation burst & NVIDIA H200 SXM5 (141 GB) & $\sim$2 hours \\
+B300 expanded burst & NVIDIA B300 SXM6 AC (287 GB) & $\sim$5 hours \\
+N-dependence reprocessing & Local CPU (AMD Ryzen, 16 GB) & $\sim$5 min \\
+Figure generation & Local CPU & $<$1 min \\
+\bottomrule
+\end{tabular}
+
+\subsection{Software}
+
+\begin{tabular}{lr}
+\toprule
+\textbf{Package} & \textbf{Version} \\
+\midrule
+Python & 3.12 \\
+PyTorch & 2.10.0+cu128 \\
+transformers & latest (2026-03) \\
+numpy & 2.4.2 \\
+scipy & 1.17.1 \\
+powerlaw & 1.5+ \\
+sentence-transformers & latest \\
+bitsandbytes & 0.49.2 \\
+accelerate & 1.13.0 \\
+\bottomrule
+\end{tabular}
+
+
+\end{document}
