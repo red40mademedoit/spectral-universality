@@ -16,7 +16,8 @@
 \newcommand{\dalpha}{\Delta\alpha}
 
 \title{Supplementary Materials:\\
-Spectral Dimension as Content Fingerprint}
+Spectral Dimension as Content Fingerprint:\\
+Eigenvalue Tail Exponents in Embedding Similarity Matrices}
 
 \author{Joseph Hayden \\
 Northland Tech Solutions \\
@@ -38,47 +39,49 @@ Northland Tech Solutions \\
 
 \subsection{Label Shuffle Test ($N = 200$ per category)}
 
-\begin{longtable}{lrrrrrr}
-\caption{Full label shuffle results for all 25 arXiv categories.
-$\al_{\text{null}}$ and $\sigma_{\text{null}}$ from 1{,}000
-permutations.} \\
+\begin{longtable}{lrrrrr}
+\caption{Full label shuffle results for all 25 arXiv categories
+($N = 200$ per category).  Null: $\al = 1.735 \pm 0.029$ from
+1{,}000 permutations.  $p$ is the empirical fraction of
+permutations with $\al \geq \al_{\text{real}}$.} \\
 \toprule
 \textbf{Category} & $\boldsymbol{\al_{\text{real}}}$ &
-$\boldsymbol{\al_{\text{null}}}$ & $\boldsymbol{\sigma}$ &
 $\boldsymbol{\Delta}$ & $\boldsymbol{z}$ & $\boldsymbol{p}$ \\
 \midrule
 \endfirsthead
 \toprule
 \textbf{Category} & $\boldsymbol{\al_{\text{real}}}$ &
-$\boldsymbol{\al_{\text{null}}}$ & $\boldsymbol{\sigma}$ &
 $\boldsymbol{\Delta}$ & $\boldsymbol{z}$ & $\boldsymbol{p}$ \\
 \midrule
 \endhead
-math.AG & 2.488 & 1.685 & 0.030 & +0.80 & 26.8 & $<$0.001 \\
-math.LO & 2.172 & 1.691 & 0.029 & +0.48 & 16.6 & $<$0.001 \\
-hep-th & 2.178 & 1.749 & 0.029 & +0.43 & 14.8 & $<$0.001 \\
-stat.ML & 2.154 & 1.744 & 0.028 & +0.41 & 14.5 & $<$0.001 \\
-math.CO & 2.098 & 1.719 & 0.029 & +0.38 & 13.1 & $<$0.001 \\
-math.NT & 2.071 & 1.700 & 0.029 & +0.37 & 12.9 & $<$0.001 \\
-math.PR & 2.050 & 1.683 & 0.029 & +0.37 & 12.6 & $<$0.001 \\
-cs.LG & 2.039 & 1.696 & 0.029 & +0.34 & 11.9 & $<$0.001 \\
-math.NA & 2.081 & 1.695 & 0.029 & +0.39 & 13.3 & $<$0.001 \\
-cs.CL & 1.987 & 1.696 & 0.029 & +0.29 & 10.0 & $<$0.001 \\
-math.SP & 1.983 & 1.739 & 0.029 & +0.24 & 8.4 & $<$0.001 \\
-cs.DS & 1.956 & 1.713 & 0.029 & +0.24 & 8.4 & $<$0.001 \\
-cs.CR & 1.921 & 1.704 & 0.029 & +0.22 & 7.5 & $<$0.001 \\
-cs.AI & 1.905 & 1.706 & 0.029 & +0.20 & 6.9 & $<$0.001 \\
-econ.TH & 1.901 & 1.724 & 0.029 & +0.18 & 6.1 & $<$0.001 \\
-cond-mat.stat-mech & 1.878 & 1.713 & 0.029 & +0.17 & 5.7 & $<$0.001 \\
-cond-mat.str-el & 1.870 & 1.717 & 0.029 & +0.15 & 5.3 & $<$0.001 \\
-gr-qc & 1.849 & 1.716 & 0.029 & +0.13 & 4.6 & $<$0.001 \\
-nlin.AO & 1.845 & 1.729 & 0.029 & +0.12 & 4.0 & $<$0.001 \\
-quant-ph & 1.842 & 1.714 & 0.029 & +0.13 & 4.4 & $<$0.001 \\
-physics.bio-ph & 1.827 & 1.728 & 0.029 & +0.10 & 3.4 & $<$0.001 \\
-physics.med-ph & 1.806 & 1.732 & 0.029 & +0.07 & 2.6 & $<$0.001 \\
-astro-ph.CO & 1.767 & 1.683 & 0.029 & +0.08 & 2.8 & $<$0.001 \\
-q-bio.MN & 1.777 & 1.724 & 0.029 & +0.05 & 1.5 & $<$0.001 \\
-physics.hist-ph & 1.746 & 1.725 & 0.029 & +0.02 & 0.7 & $<$0.001 \\
+math.AG & 2.488 & +0.75 & 25.7 & $<$0.001 \\
+hep-th & 2.178 & +0.44 & 15.2 & $<$0.001 \\
+math.LO & 2.172 & +0.44 & 14.9 & $<$0.001 \\
+stat.ML & 2.154 & +0.42 & 14.3 & $<$0.001 \\
+math.CO & 2.098 & +0.36 & 12.4 & $<$0.001 \\
+math.NA & 2.081 & +0.35 & 11.8 & $<$0.001 \\
+math.NT & 2.071 & +0.34 & 11.5 & $<$0.001 \\
+math.PR & 2.050 & +0.32 & 10.8 & $<$0.001 \\
+cs.LG & 2.039 & +0.30 & 10.4 & $<$0.001 \\
+cond-mat.str-el & 2.016 & +0.28 & 9.6 & $<$0.001 \\
+cs.DS & 1.990 & +0.25 & 8.7 & $<$0.001 \\
+math.SP & 1.983 & +0.25 & 8.5 & $<$0.001 \\
+gr-qc & 1.983 & +0.25 & 8.5 & $<$0.001 \\
+cs.CL & 1.980 & +0.24 & 8.4 & $<$0.001 \\
+cond-mat.stat-mech & 1.963 & +0.23 & 7.8 & $<$0.001 \\
+econ.TH & 1.958 & +0.22 & 7.6 & $<$0.001 \\
+cs.AI & 1.909 & +0.17 & 6.0 & $<$0.001 \\
+cs.CR & 1.888 & +0.15 & 5.2 & $<$0.001 \\
+quant-ph & 1.876 & +0.14 & 4.8 & $<$0.001 \\
+physics.bio-ph & 1.870 & +0.13 & 4.6 & $<$0.001 \\
+nlin.AO & 1.835 & +0.10 & 3.4 & 0.001 \\
+physics.med-ph & 1.829 & +0.09 & 3.2 & 0.001 \\
+q-bio.MN & 1.777 & +0.04 & 1.4 & 0.082 \\
+astro-ph.CO & 1.767 & +0.03 & 1.1 & 0.136 \\
+physics.hist-ph & 1.746 & +0.01 & 0.4 & 0.348 \\
+\midrule
+\multicolumn{5}{l}{\textit{22/25 at $p < 0.001$; 3 do not reject
+at $p < 0.05$}} \\
 \bottomrule
 \end{longtable}
 
@@ -129,44 +132,50 @@ q-bio.MN & 1.412 & 1.461 & +0.049 & +3.5\% \\
 
 \subsection{KS $p$-Values (All 25 Categories)}
 
-\begin{longtable}{lrrr}
-\caption{KS $p$-values and MLE $\al$ for all 25 arXiv categories
-(CSN bootstrap, $B = 500$, $N = 400$).} \\
+\begin{longtable}{lrrrrl}
+\caption{KS $p$-values, MLE $\al$, and lognormal comparison for
+all 25 arXiv categories (CSN bootstrap, $B = 500$, $N = 400$).
+$R < 0$: lognormal preferred.} \\
 \toprule
 \textbf{Category} & $\boldsymbol{\al_{\text{OLS}}}$ &
-$\boldsymbol{\al_{\text{MLE}}}$ & $\boldsymbol{p}$ \\
+$\boldsymbol{\al_{\text{MLE}}}$ & \textbf{KS} $\boldsymbol{p}$ &
+\textbf{LN} $\boldsymbol{R}$ & \textbf{LN pref?} \\
 \midrule
 \endfirsthead
 \toprule
 \textbf{Category} & $\boldsymbol{\al_{\text{OLS}}}$ &
-$\boldsymbol{\al_{\text{MLE}}}$ & $\boldsymbol{p}$ \\
+$\boldsymbol{\al_{\text{MLE}}}$ & \textbf{KS} $\boldsymbol{p}$ &
+\textbf{LN} $\boldsymbol{R}$ & \textbf{LN pref?} \\
 \midrule
 \endhead
-physics.hist-ph & 1.559 & --- & 0.820 \\
-q-bio.MN & 1.412 & --- & 0.766 \\
-quant-ph & 1.526 & --- & 0.668 \\
-math.NT & 1.588 & --- & 0.616 \\
-astro-ph.CO & 1.468 & --- & 0.598 \\
-physics.bio-ph & 1.508 & --- & 0.554 \\
-cond-mat.stat-mech & 1.544 & --- & 0.540 \\
-cs.DS & 1.564 & --- & 0.544 \\
-cs.AI & 1.540 & --- & 0.518 \\
-nlin.AO & 1.518 & --- & 0.518 \\
-econ.TH & 1.538 & --- & 0.494 \\
-math.NA & 1.582 & --- & 0.458 \\
-cs.CR & 1.556 & --- & 0.420 \\
-math.SP & 1.568 & --- & 0.310 \\
-stat.ML & 1.598 & --- & 0.290 \\
-cs.LG & 1.592 & --- & 0.280 \\
-cs.CL & 1.584 & --- & 0.272 \\
-physics.med-ph & 1.492 & --- & 0.274 \\
-gr-qc & 1.536 & --- & 0.266 \\
-hep-th & 1.624 & --- & 0.246 \\
-math.PR & 1.580 & --- & 0.206 \\
-cond-mat.str-el & 1.530 & --- & 0.198 \\
-math.AG & 1.634 & --- & 0.196 \\
-math.CO & 1.590 & --- & 0.106 \\
-\textbf{math.LO} & \textbf{1.600} & --- & \textbf{0.032} \\
+physics.hist-ph & 1.522 & 2.878 & 0.820 & $-$0.14 & Yes \\
+q-bio.MN & 1.412 & 2.634 & 0.766 & $-$0.56 & Yes \\
+quant-ph & 1.517 & 2.996 & 0.668 & $-$0.26 & Yes \\
+math.NT & 1.554 & 2.842 & 0.616 & $-$0.70 & Yes \\
+astro-ph.CO & 1.424 & 2.833 & 0.598 & $-$0.29 & Yes \\
+physics.bio-ph & 1.491 & 2.714 & 0.554 & $-$0.71 & Yes \\
+cs.DS & 1.487 & 2.839 & 0.544 & $-$0.64 & Yes \\
+cond-mat.stat-mech & 1.530 & 2.976 & 0.540 & $-$0.48 & Yes \\
+cs.AI & 1.495 & 2.996 & 0.518 & $-$0.46 & Yes \\
+nlin.AO & 1.427 & 2.809 & 0.518 & $-$0.39 & Yes \\
+econ.TH & 1.473 & 2.865 & 0.494 & $-$0.62 & Yes \\
+math.NA & 1.569 & 2.965 & 0.458 & $-$0.71 & Yes \\
+cs.CR & 1.460 & 2.853 & 0.420 & $-$0.51 & Yes \\
+math.SP & 1.453 & 2.759 & 0.310 & $-$0.81 & Yes \\
+stat.ML & 1.535 & 2.810 & 0.290 & $-$1.01 & Yes \\
+cs.LG & 1.545 & 2.816 & 0.280 & $-$0.86 & Yes \\
+physics.med-ph & 1.437 & 2.445 & 0.274 & $-$1.03 & Yes \\
+cs.CL & 1.499 & 2.890 & 0.272 & $-$0.71 & Yes \\
+gr-qc & 1.504 & 2.767 & 0.266 & $-$0.77 & Yes \\
+hep-th & 1.574 & 2.963 & 0.246 & $-$0.79 & Yes \\
+math.PR & 1.575 & 2.735 & 0.206 & $-$0.90 & Yes \\
+cond-mat.str-el & 1.511 & 2.915 & 0.198 & $-$0.66 & Yes \\
+math.AG & 1.634 & 2.940 & 0.196 & $-$1.30 & Yes \\
+math.CO & 1.609 & 2.789 & 0.106 & $-$0.81 & Yes \\
+\textbf{math.LO} & \textbf{1.585} & \textbf{2.680} & \textbf{0.032} & $-$1.23 & Yes \\
+\midrule
+\multicolumn{6}{l}{\textit{Lognormal preferred for all 25
+categories ($R < 0$); 21/25 not significant ($p > 0.30$)}} \\
 \bottomrule
 \end{longtable}
 

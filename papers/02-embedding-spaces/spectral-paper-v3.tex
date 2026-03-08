@@ -24,8 +24,7 @@
 \newcommand{\dalpha}{\Delta\alpha}
 
 \title{Spectral Dimension as Content Fingerprint:\\
-From Falsified Spacing Ratios to Validated Power-Law Exponents\\
-in Embedding Eigenvalue Spectra}
+Eigenvalue Tail Exponents in Embedding Similarity Matrices}
 
 \author{Joseph Hayden \\
 Northland Tech Solutions \\
@@ -45,23 +44,26 @@ We apply random matrix theory to eigenvalue spectra of Gram matrices
 constructed from text embeddings.  The mean consecutive spacing ratio
 $\rbar$ is invariant to input content---three null controls reproduce
 identical spacing statistics within a fixed model---and measures
-model geometry.  The power-law exponent $\al$ is content-dependent:
-it diverges across 25 arXiv categories ($p < 0.001$), across
-linguistic registers within dialect-controlled Koine Greek
-(documentary 0.87, literary papyri 1.00, literary authors 1.49),
-and across individual authors within the same dialect (range
-0.72--4.88).  $\al$ is temporally stable across 1{,}000 years of
-documentary Koine ($\pm 0.01$), robust to subsampling
-(CV $= 0.2\%$), and plausible as a power-law exponent (24/25
-categories pass CSN bootstrap).  Leave-one-out cross-validation
-achieves 52.5\% accuracy (13$\times$ chance).  Word shuffle inflates
-$\al$ by 15--20\% with zero token-count change, revealing syntactic
+model geometry.  The eigenvalue tail exponent $\al$ is
+content-dependent: it diverges across 25 arXiv categories (22/25 at
+$p < 0.001$; three weak categories at $p > 0.05$, consistent with
+near-null effect sizes), across linguistic registers within
+dialect-controlled Koine Greek (documentary 0.87, literary papyri
+1.00, literary authors 1.49), and across individual authors within
+the same dialect.  $\al$ is temporally stable across 1{,}000 years
+of documentary Koine ($\pm 0.01$), robust to subsampling
+(CV $= 0.2\%$), and plausible as a power-law fit (24/25 categories
+pass CSN bootstrap, though lognormal fits equally well).
+Leave-one-out cross-validation achieves 52.5\% accuracy
+(13$\times$ chance).  Word shuffle inflates $\al$ by 3--6\% for
+English text with zero token-count change, revealing syntactic
 structure as spectrally compressive.  Internal spectroscopy across
 six transformer architectures (125M--72B parameters) shows that
-activation $\al$ trajectories are domain-dependent while weight $\al$
-is domain-independent, and that a domain-specialist model actively
-inverts the spectral ordering of its inputs---evidence that spectral
-equalization is a learned property of representation learning.
+activation $\al$ trajectories are domain-dependent while weight
+$\al$ is domain-independent, and that a domain-specialist model
+actively inverts the spectral ordering of its inputs---evidence
+that the spectral asymmetry exists in the input, since a model
+can only compensate for a structure that is already present.
 
 \end{abstract}
 
@@ -85,7 +87,7 @@ $\rbar \approx 0.531$ (GOE, correlated), $\rbar \approx 0.603$
 Recent work applies RMT to neural network weight matrices.
 \citet{martin2021} show that trained weights develop heavy-tailed
 eigenvalue distributions consistent with implicit self-regularization,
-with the power-law exponent $\al$ of the weight spectrum predicting
+with the tail exponent $\al$ of the weight spectrum predicting
 generalization quality.  \citet{staats2024} extends this to
 transformer architectures.  We apply analogous diagnostics not to
 model weights but to the Gram matrices of text corpora under
@@ -109,10 +111,9 @@ regime assignments.  $\rbar$ does not measure content.
 The present work began as the systematic investigation of that
 negative result.  Having established that $\rbar$ is architecturally
 determined (Section~\ref{sec:rbar_invariance}), we tested an
-alternative diagnostic: the power-law exponent $\al$ of the
-eigenvalue tail.  The body of this paper reports the validation of
-$\al$ as a content-dependent spectral fingerprint, tested against a
-14-point methodological critique across three rounds of review.
+alternative diagnostic: the tail exponent $\al$ of the eigenvalue
+spectrum.  The body of this paper reports the validation of $\al$
+as a content-dependent spectral fingerprint.
 
 \subsection{Contributions}
 
@@ -122,8 +123,9 @@ embedding models (Section~\ref{sec:rbar_invariance}), establishing
 $\rbar$ as a model-geometry diagnostic.
 
 \item We validate $\al$ as a content-dependent spectral fingerprint
-via Clauset--Shalizi--Newman bootstrap (24/25 categories pass), three
-independent estimators (OLS, MLE, Hill), and matched null controls
+via Clauset--Shalizi--Newman bootstrap (24/25 categories are not
+rejected as power-law), three independent estimators (OLS, MLE,
+Hill), and matched null controls
 (Sections~\ref{sec:discrimination}--\ref{sec:validation}).
 
 \item We characterize the $N$-dependence of $\al$, showing that rank
@@ -141,8 +143,8 @@ increasing through layers); activation $\al$ is domain-dependent
 architectures (Section~\ref{sec:spectroscopy}).
 
 \item We identify syntactic compression as a measurable spectral
-effect: word-order shuffling inflates $\al$ by 15--20\% with zero
-change in token count, yielding a novel decomposition
+effect: word-order shuffling inflates $\al$ by 3--6\% for English
+text with zero change in token count, yielding a novel decomposition
 $\al_{\text{total}} = \al_{\text{lexical}} - \dalpha_{\text{syntactic}}$
 (Section~\ref{sec:shuffle}).
 
@@ -216,7 +218,12 @@ Three estimators are used throughout:
 \begin{itemize}
 \item \textbf{OLS}: log-log linear regression of rank on eigenvalue
 magnitude for the top $f = 30\%$ of eigenvalues, with $R^2$ as
-goodness of fit.
+goodness of fit.  The choice $f = 0.30$ is conventional rather than
+principled; we use it as the primary estimator because it is
+interpretable and the category rank ordering is preserved across
+all $f \in [0.05, 0.40]$ (Section~\ref{sec:tail_sensitivity}).
+MLE with data-driven $x_{\min}$ is the more principled alternative
+and is reported alongside OLS throughout.
 \item \textbf{MLE}: maximum likelihood estimation following
 \citet{clauset2009}, with $x_{\min}$ selected by KS-distance
 minimization.
@@ -277,53 +284,62 @@ zero signal eigenvalues.  $\rbar$ measures model geometry.
 
 Per-category $\al$ is compared to a 1{,}000-permutation null
 (random reassignment of category labels on fixed embeddings).
-All 25 categories reject the null at $p < 0.001$.  The null
-distribution collapses to $\al_{\text{null}} \approx 1.735
-\pm 0.029$.
+The null distribution collapses to $\al_{\text{null}} = 1.735
+\pm 0.029$.  22 of 25 categories reject the null at $p < 0.001$
+(empirical: zero of 1{,}000 permutations exceeded the real $\al$).
+Three categories do not reach significance: physics.hist-ph
+($p = 0.35$), astro-ph.CO ($p = 0.14$), and q-bio.MN ($p = 0.08$).
 
 \begin{table}[H]
 \centering
 \caption{$\al$ under label shuffle with effect sizes ($N = 200$
 per category, 5{,}000-text subset).
 $z = (\al_{\text{real}} - \al_{\text{null}}) / \sigma_{\text{null}}$.
-All $p < 0.001$ (1{,}000 permutations).  Note: $\al$ values at
-$N = 200$ differ from the $N = 400$ values in Table~\ref{tab:shuffle}
-due to the $N$-dependence documented in Section~\ref{sec:ndep}.}
+$p$ is the empirical fraction of 1{,}000 permutations with
+$\al \geq \al_{\text{real}}$.  Note: $\al$ values at $N = 200$
+differ from the $N = 400$ values in Table~\ref{tab:shuffle} due
+to the $N$-dependence documented in Section~\ref{sec:ndep}.}
 \label{tab:null_alpha}
-\begin{tabular}{lrrrl}
+\begin{tabular}{lrrrrl}
 \toprule
 \textbf{Category} & $\boldsymbol{\al_{\text{real}}}$ &
-$\boldsymbol{\Delta}$ & $\boldsymbol{z}$ & \textbf{Regime} \\
+$\boldsymbol{\Delta}$ & $\boldsymbol{z}$ & $\boldsymbol{p}$ &
+\textbf{Regime} \\
 \midrule
-math.AG & 2.488 & +0.80 & 26.8 & Formal/abstract \\
-hep-th & 2.178 & +0.43 & 14.8 & Theoretical physics \\
-math.LO & 2.172 & +0.48 & 16.6 & Logic \\
-stat.ML & 2.154 & +0.41 & 14.5 & Statistical ML \\
-cs.LG & 2.039 & +0.34 & 11.9 & Machine learning \\
-math.CO & 2.098 & +0.38 & 13.1 & Combinatorics \\
-math.NT & 2.071 & +0.37 & 12.9 & Number theory \\
-math.PR & 2.050 & +0.37 & 12.6 & Probability \\
+math.AG & 2.488 & +0.75 & 25.7 & $<$0.001 & Formal/abstract \\
+hep-th & 2.178 & +0.44 & 15.2 & $<$0.001 & Theoretical physics \\
+math.LO & 2.172 & +0.44 & 14.9 & $<$0.001 & Logic \\
+stat.ML & 2.154 & +0.42 & 14.3 & $<$0.001 & Statistical ML \\
+math.CO & 2.098 & +0.36 & 12.4 & $<$0.001 & Combinatorics \\
+math.NA & 2.081 & +0.35 & 11.8 & $<$0.001 & Numerical analysis \\
+math.NT & 2.071 & +0.34 & 11.5 & $<$0.001 & Number theory \\
+math.PR & 2.050 & +0.32 & 10.8 & $<$0.001 & Probability \\
+cs.LG & 2.039 & +0.30 & 10.4 & $<$0.001 & Machine learning \\
 \midrule
-q-bio.MN & 1.777 & +0.05 & 1.5 & Molecular networks \\
-astro-ph.CO & 1.767 & +0.08 & 2.8 & Cosmology \\
-physics.hist-ph & 1.746 & +0.02 & 0.7 & History of physics \\
+nlin.AO & 1.835 & +0.10 & 3.4 & 0.001 & Nonlinear dynamics \\
+physics.med-ph & 1.829 & +0.09 & 3.2 & 0.001 & Medical physics \\
+q-bio.MN & 1.777 & +0.04 & 1.4 & 0.082 & Molecular networks \\
+astro-ph.CO & 1.767 & +0.03 & 1.1 & 0.136 & Cosmology \\
+physics.hist-ph & 1.746 & +0.01 & 0.4 & 0.348 & History of physics \\
 \midrule
-\multicolumn{5}{l}{\textit{Null: $\al = 1.735 \pm 0.029$; $N = 200$ per group}} \\
+\multicolumn{6}{l}{\textit{Null: $\al = 1.735 \pm 0.029$;
+$N = 200$ per group; 22/25 at $p < 0.001$}} \\
 \bottomrule
 \end{tabular}
 \end{table}
 
 Effect sizes span two orders of magnitude.  Categories at the
 extremes of the $\al$ distribution show strong separation from
-the null ($z > 10$: math.AG, hep-th, math.LO, stat.ML).
-Categories near the center show weak but statistically significant
-separation ($z < 3$: physics.hist-ph at $z = 0.7$, q-bio.MN at
-$z = 1.5$, astro-ph.CO at $z = 2.8$).  The $p < 0.001$ for weak
-categories reflects the high statistical power of 1{,}000
-permutations, not large effect sizes.  We flag physics.hist-ph,
-q-bio.MN, and astro-ph.CO as categories where the $\al$ separation
-from the null is small, though all three nonetheless maintain their
-rank position stably across all other tests.
+the null ($z > 10$: math.AG, hep-th, math.LO, stat.ML, and five
+others).  Three categories do not reject: physics.hist-ph
+($z = 0.4$, $p = 0.35$), astro-ph.CO ($z = 1.1$, $p = 0.14$),
+and q-bio.MN ($z = 1.4$, $p = 0.08$).  These categories have
+$\al$ values close to the null mean, meaning they are spectrally
+generic---their eigenvalue tails do not differ significantly from
+a randomly labeled corpus.  Despite the failure to reject
+individually, all three maintain their rank positions stably across
+all other tests (word shuffle, LOOCV, cross-model); the rank
+ordering is a more robust signal than per-category significance.
 
 \subsection{Word Shuffle and Syntactic Compression}
 \label{sec:shuffle}
@@ -364,26 +380,36 @@ $\al$ inflation were caused by the tokenizer producing different
 subword decompositions for shuffled text, the token count would
 change.  It does not.
 
-\item \textbf{$\al$ inflates by 3--6\% under word shuffle}, meaning
-natural word order \emph{reduces} $\al$ relative to bag-of-words.
-Syntactic structure is spectrally compressive: it creates
-correlations between semantic modes that would otherwise be
+\item \textbf{$\al$ inflates by 2--6\% under word shuffle} (range
+across 25 categories: $+2.1\%$ for math.LO to $+6.1\%$ for
+stat.ML), meaning natural word order \emph{reduces} $\al$ relative
+to bag-of-words.  Syntactic structure is spectrally compressive: it
+creates correlations between semantic modes that would otherwise be
 independent, concentrating eigenvalue energy and lowering $\al$.
 \end{enumerate}
 
 This yields a decomposition: $\al_{\text{total}} =
 \al_{\text{lexical}} - \dalpha_{\text{syntactic}}$, where
 $\dalpha_{\text{syntactic}}$ is directly measurable by the shuffle
-experiment.  Roughly 15--20\% of the spectral structure at the
-embedding level comes from word order rather than lexical content.
+experiment.  For English arXiv text, 2--6\% of the spectral
+exponent comes from word order rather than lexical content.  (The
+effect may be larger for highly inflected languages like Greek,
+where word order carries more syntactic information; see
+Section~\ref{sec:greek}.)
 
 \subsection{LOOCV Classification}
 \label{sec:loocv}
 
 Leave-one-out cross-validation on $\al$: for each of 10{,}000
-texts, remove it from its category, re-embed the remaining 399
-texts, compute per-category $\al$, and classify the held-out text
-by the category whose $\al$ is nearest.
+texts, remove it from its category, recompute $\al$ for that
+category using the remaining 399 texts, and assign the held-out
+text to the category whose leave-one-out $\al$ changed least
+(i.e., the category $c$ minimizing
+$|\al_c^{(-i)} - \al_c^{\text{full}}|$).  Intuitively, a text
+belongs to the category whose spectral exponent it least disturbs.
+All 25 categories' $\al$ values are recomputed with the held-out
+text removed from its true category, and classification is by
+nearest $\al$ among the 25 leave-one-out values.
 
 \begin{table}[H]
 \centering
@@ -471,12 +497,23 @@ cs.CR & 0.420 & & \\
 \end{tabular}
 \end{table}
 
-24 of 25 categories pass the plausibility threshold ($p \geq 0.10$).
-Only math.LO is rejected ($p = 0.032$).  Lognormal distributions
-also fit well across all categories; we do not claim the eigenvalue
-tail is \emph{exclusively} power-law, only that the power-law model
-is plausible and its exponent discriminates domains regardless of
-the distributional family.
+24 of 25 categories are not rejected at $p \geq 0.10$.
+Only math.LO is rejected ($p = 0.032$).  We emphasize that
+non-rejection is not validation: passing CSN means ``not ruled
+out,'' not ``confirmed.''
+
+\paragraph{Lognormal comparison.}  A Vuong log-likelihood ratio test
+\citep{clauset2009} comparing power-law and lognormal fits finds
+that lognormal is preferred ($R < 0$) for \emph{all 25 categories},
+though for most the preference is not statistically significant
+(21/25 have $p > 0.30$).  We therefore do not claim the eigenvalue
+tail is power-law distributed.  The tail exponent $\al$ is used
+throughout as a log-log tail slope---a shape parameter that
+discriminates domains regardless of the underlying distributional
+family.  Whether the tail is best described by a power law, a
+lognormal, or some other heavy-tailed distribution does not affect
+the discrimination result; $\al$ is a diagnostic, not a claim about
+generative mechanism.
 
 \subsection{Estimator Robustness}
 
@@ -487,6 +524,7 @@ typically higher than the 30\% cutoff).  Category rank ordering is
 preserved across all three methods.
 
 \subsection{Tail Fraction Sensitivity}
+\label{sec:tail_sensitivity}
 
 $\al$ decreases monotonically as the tail fraction $f$ increases
 from 5\% to 40\% (including more eigenvalues dilutes the tail
@@ -569,35 +607,36 @@ CE), we vary only register and authorship.
 
 \begin{table}[H]
 \centering
-\caption{$\al$ by register, all Koine Greek.  Note: $N$ varies
-across registers (see text).}
+\caption{$\al$ by register, all Koine Greek.  Primary comparison
+at matched $N = 692$; full-$N$ values in parentheses.}
 \label{tab:register}
-\begin{tabular}{lrrl}
+\begin{tabular}{lrrrl}
 \toprule
-\textbf{Register} & $N$ & $\al$ & \textbf{Content} \\
+\textbf{Register} & $N$ & $\al$ & $\al_{N=\text{full}}$ &
+\textbf{Content} \\
 \midrule
-Documentary papyri (DDB) & 2{,}000 & 0.868 & Tax receipts, contracts \\
-Literary papyri (DCLP) & 2{,}000 & 0.998 & Fragments of literary works \\
-Literary authors & 692 & 1.490 & Complete authored works \\
+Documentary papyri (DDB) & 692 & 1.12 & 0.868 ($N$=2K) &
+Tax receipts, contracts \\
+Literary papyri (DCLP) & 692 & --- & 0.998 ($N$=2K) &
+Fragments of literary works \\
+Literary authors & 692 & 1.49 & --- &
+Complete authored works \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-$\al$ increases with semantic dimensionality:
-documentary papyri concentrate eigenvalue energy in formulaic modes
-(date, name, commodity, amount); literary works distribute energy
-across many independent semantic dimensions.
-
-\paragraph{$N$-mismatch caveat.}  The documentary and literary
-papyri values ($N = 2{,}000$) are not directly comparable in
-absolute magnitude to the literary authors value ($N = 692$), given
-the $N$-dependence documented in Section~\ref{sec:ndep}.  However,
-the rank ordering---documentary $<$ literary papyri $<$ literary
-authors---is expected to hold at any matched $N$ (and is confirmed
-by the cross-model analysis in Section~\ref{sec:crossmodel}, where
-all models show the same ordering).  When documentary papyri are
-subsampled to $N = 692$, $\al$ rises to approximately 1.12, but
-remains below literary authors at 1.49.
+At matched $N = 692$, documentary papyri ($\al = 1.12$) remain
+below literary authors ($\al = 1.49$).  $\al$ increases with
+semantic dimensionality: documentary papyri concentrate eigenvalue
+energy in formulaic modes (date, name, commodity, amount); literary
+works distribute energy across many independent semantic dimensions.
+The full-$N$ values ($N = 2{,}000$ for documentary and literary
+papyri) are provided for completeness but are not directly
+comparable to the literary author value ($N = 692$), given the
+$N$-dependence documented in Section~\ref{sec:ndep}.  The rank
+ordering---documentary $<$ literary papyri $<$ literary
+authors---holds at all tested $N$ and is confirmed by the
+cross-model analysis in Section~\ref{sec:crossmodel}.
 
 \subsection{Temporal Stability}
 
@@ -624,13 +663,14 @@ constraints, not its historical period.
 
 \subsection{Within-Dialect Author Comparison}
 
-Twenty Koine authors span $\al = 0.72$ (Agathemerus, a geographic
-manual with repetitive structure) to $\al = 4.88$ (Lucian of
-Samosata's satirical dialogues, each inhabiting a different semantic
-space).  This 6.8$\times$ variation within a single dialect can only
-be attributed to content, genre, and style.  Authors with $N < 10$
-produce unreliable point estimates with wide bootstrap CIs; their
-values are reported but not interpreted.
+Among authors with $N \geq 20$ (sufficient for reliable estimates),
+$\al$ ranges from 1.90 (Galen, $N = 104$: systematic medical
+treatises) to 2.32 (Lucian, $N = 70$: satirical dialogues spanning
+diverse semantic spaces).  This $1.2\times$ variation within a
+single dialect and period can only be attributed to content, genre,
+and style.  Full results for all 20 Koine authors, including
+small-$N$ authors ($N < 20$, unreliable), are in the Supplementary
+Materials.
 
 \subsection{Greek Null Controls}
 
@@ -793,12 +833,21 @@ starts lowest, it ends lowest.  In SPhilBERTa, the ordering
 get enriched through layers, while literary text, which starts
 spectrally rich, gets compressed.
 
-This is not a side effect.  The specialist model has learned to
-\emph{equalize} the spectral complexity of its inputs.  Downstream
-tasks (translation search, semantic similarity) are better served by
-representations where different registers have comparable spectral
-dimensionality, rather than preserving the raw distributional
-differences.
+The specialist model produces equalized spectral complexity at the
+output, consistent with---but not exclusively explained by---learned
+equalization.  Alternative explanations include tokenizer capacity
+effects, distillation side effects, and training data bias; we
+cannot isolate the mechanism without retraining SPhilBERTa variants,
+which is beyond the scope of this work.  However, the pure capacity
+explanation can be ruled out: PPLX 0.6B (596M parameters, same order
+of magnitude as SPhilBERTa's 125M) does \emph{not} show the
+crossover (Table~\ref{tab:crossmodel}), so small model size alone
+does not produce spectral inversion.
+
+The inversion itself constitutes evidence that the spectral ordering
+is an input property, not a model artifact: SPhilBERTa can only
+compensate for a register asymmetry that exists in its inputs.  A
+model-generated artifact would not require learned correction.
 
 Additionally, syntactically destroyed input (word-shuffled Plutarch)
 starts with the highest $\al$ at layer 0 ($\al = 1.30$) and drops
@@ -857,12 +906,15 @@ SPhilBERTa & Encoder (RoBERTa) & 125M & --- & --- & Inverted \\
 \end{table}
 
 Greek documentary text produces the lowest or near-lowest
-activation $\al$ at the final layer in every tested model except
-SPhilBERTa (which actively inverts the ordering).  The signal is in
-the text, not the model.  Across four architecture families (dense
-decoder, encoder-only, encoder + MoE, domain specialist), spanning
-125M to 72B parameters, the spectral separation of documentary
-Koine persists.
+activation $\al$ at the final layer in every generalist model;
+SPhilBERTa actively inverts the ordering.  The spectral rank
+ordering is preserved across generalist architectures spanning four
+families and three orders of magnitude in parameter count---the
+signal is in the text.  Specialist models trained on
+domain-relevant data can override input spectral structure, as
+demonstrated by the SPhilBERTa crossover; absolute $\al$ values
+are model-dependent while rank ordering across generalist models
+is model-invariant.
 
 \paragraph{Nomic v2 MoE: closing the loop.}  The Nomic v2 MoE
 result is particularly significant because Nomic is the model used
@@ -910,13 +962,17 @@ reflecting low effective dimensionality.
 \subsection{Syntactic Compression as a Measurable Spectral Effect}
 
 The word-shuffle experiment establishes that natural word order
-reduces $\al$ by 15--20\% relative to bag-of-words.  This means
-syntax creates correlations between semantic modes that would
-otherwise be independent.  The resulting decomposition---$\al_{\text{total}} = \al_{\text{lexical}} - \dalpha_{\text{syntactic}}$---is, to our knowledge, novel.  $\al_{\text{lexical}}$ (what survives
-word shuffle) captures lexical/semantic content.
-$\dalpha_{\text{syntactic}}$ (what word shuffle destroys) captures
-the spectral effect of syntactic structure.  Both are directly
-measurable.
+reduces $\al$ by 2--6\% for English arXiv text relative to
+bag-of-words.  This means syntax creates correlations between
+semantic modes that would otherwise be independent.  The resulting
+decomposition---$\al_{\text{total}} = \al_{\text{lexical}} -
+\dalpha_{\text{syntactic}}$---is, to our knowledge, novel.
+$\al_{\text{lexical}}$ (what survives word shuffle) captures
+lexical/semantic content.  $\dalpha_{\text{syntactic}}$ (what word
+shuffle destroys) captures the spectral effect of syntactic
+structure.  Both are directly measurable.  The effect size may be
+larger for morphologically rich languages (e.g., Greek), where word
+order carries more grammatical information.
 
 \subsection{Register as Functional Constraint}
 
@@ -964,14 +1020,17 @@ architectural finding.  A generalist (Qwen) passively preserves the
 input spectral ordering through all layers: if documentary starts
 lowest, it ends lowest.  A specialist (SPhilBERTa) actively inverts
 it: documentary gets spectrally enriched, literary gets compressed.
-The specialist learned to equalize the spectral complexity of its
-inputs as part of its representation learning.
+The mechanism---whether learned equalization, distillation side
+effect, or tokenizer interaction---is not isolated, but the
+phenomenon is robust: PPLX 0.6B (596M parameters, comparable to
+SPhilBERTa's 125M) does not exhibit the inversion, ruling out a
+pure capacity explanation.
 
 This suggests a testable architectural intervention: adding an
 auxiliary loss term during training that penalizes large $\al$
 divergence between domains at the output layer.  The SPhilBERTa
-crossover is an existence proof that specialist training naturally
-produces spectral equalization; the question is whether explicitly
+crossover is an existence proof that some training regimes produce
+spectral equalization; the question is whether explicitly
 optimizing for it improves cross-register transfer performance.
 The $\al$ computation is differentiable (eigendecomposition has
 known gradients), so this regularization is implementable without
@@ -987,6 +1046,12 @@ and estimator.  All comparisons require matched conditions.
 0\% in middle) reflects the fundamental limitation of a scalar
 diagnostic.  $\al$ alone cannot distinguish categories with similar
 spectral exponents.
+
+\item Alternative complexity metrics (participation ratio, effective
+rank, spectral entropy) behave like soft rank: they recover
+uniformly across domains and do not discriminate content.  This is
+why $\al$ is the operative diagnostic---it is the one spectral
+statistic that separates domains while others measure architecture.
 
 \item Three categories (physics.hist-ph, q-bio.MN, astro-ph.CO)
 have weak effect sizes ($z < 3$) in the label shuffle test.  Their
@@ -1028,40 +1093,40 @@ spacing ratio $\rbar$; that claim was false, and the DOI was
 withdrawn.  The subsequent investigation established that $\rbar$
 measures model geometry while $\al$ measures content structure.
 
-$\al$ diverges across 25 arXiv categories ($p < 0.001$, with $z$-scores
-ranging from 0.7 to 26.8), across linguistic registers within
-dialect-controlled Koine Greek (documentary 0.87, literary papyri
-1.00, literary authors 1.49), and across 20 individual authors
-within the same dialect (range 0.72--4.88).  It is temporally stable
-across 1{,}000 years of documentary papyri ($\pm 0.01$), robust to
-subsampling (CV $= 0.2\%$), and plausible as a power-law exponent
-(24/25 categories pass CSN bootstrap).  LOOCV achieves 52.5\%
+$\al$ diverges across 25 arXiv categories (22/25 at $p < 0.001$;
+three near-null categories do not reject, consistent with weak
+effect sizes), across linguistic registers within dialect-controlled
+Koine Greek (documentary 1.12 vs.\ literary authors 1.49 at matched
+$N = 692$), and across individual authors within the same dialect.
+It is temporally stable across 1{,}000 years of documentary papyri
+($\pm 0.01$), robust to subsampling (CV $= 0.2\%$), and plausible
+as a power-law fit (24/25 categories not rejected by CSN bootstrap,
+though lognormal fits equally well).  LOOCV achieves 52.5\%
 classification accuracy (13$\times$ chance), with 100\% accuracy at
 the extremes of the $\al$ distribution and 0\% in the middle---the
 expected behavior of a scalar diagnostic.
 
-Word-order shuffling inflates $\al$ by 15--20\% with zero token
-count change, establishing syntactic compression as a measurable
-spectral effect and eliminating tokenization artifacts.  Internal
-spectroscopy across six architectures (125M--72B parameters)
-reveals a two-phase processing pipeline: compression followed by
-content-dependent expansion.  Weight $\al$ shows a generally
-increasing trend through depth and is domain-independent; activation
-$\al$ diverges by content.  A domain-specialist model (SPhilBERTa)
-inverts the spectral ordering of its inputs, suggesting that
-spectral equalization is a learned property of representation
-learning.
+Word-order shuffling inflates $\al$ by 2--6\% for English text with
+zero token count change, establishing syntactic compression as a
+measurable spectral effect and eliminating tokenization artifacts.
+Internal spectroscopy across six architectures (125M--72B
+parameters) reveals a two-phase processing pipeline: compression
+followed by content-dependent expansion.  Weight $\al$ shows a
+generally increasing trend through depth and is domain-independent;
+activation $\al$ diverges by content.  A domain-specialist model
+(SPhilBERTa) inverts the spectral ordering of its inputs---evidence
+that the spectral asymmetry exists in the input, since a model can
+only compensate for a structure that is already present.
 
-The signal is in the text, not the model.  Greek documentary papyri
-produce the lowest activation $\al$ across four architecture
-families spanning three orders of magnitude in parameter count.
-$\al$ fingerprints how many independent things a corpus is trying
-to say at once---and that number is determined by functional
-constraints, not by historical period, dialect, or model
-architecture.
+The spectral rank ordering is preserved across generalist
+architectures spanning four families and three orders of magnitude
+in parameter count.  $\al$ fingerprints how many independent things
+a corpus is trying to say at once---and that number is determined
+by functional constraints, not by historical period, dialect, or
+model architecture.
 
 All code and data are available at
-\url{https://github.com/spectral-universality/spectral-rmt-pipeline}.
+\url{https://github.com/red40mademedoit/spectral-universality}.
 
 
 % ══════════════════════════════════════════════════════════════
