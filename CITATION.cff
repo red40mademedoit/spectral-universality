@@ -1,11 +1,12 @@
 cff-version: 1.2.0
-title: "Spectral Universality Project"
-message: "If you use this work, please cite it as below."
+title: "Spectral Dimension as Content Fingerprint in Embedding Eigenvalue Spectra"
+message: "If you use this software, please cite it as below."
 type: software
 authors:
-  - family-names: Hayden
-    given-names: Joseph
-    alias: Shadow
-    affiliation: "NTS / ShadowCorp LLC"
-repository-code: "https://github.com/spectral-universality"
+  - given-names: Joseph
+    family-names: Hayden
+    email: shadow@shdwcorp.cloud
+    affiliation: Northland Tech Solutions
+repository-code: "https://github.com/red40mademedoit/spectral-universality"
 license: MIT
+date-released: "2026-03-08"
